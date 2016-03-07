@@ -1,0 +1,6 @@
+mock/
+htmlcov
+.coverage
+build
+__pycache__/
+
