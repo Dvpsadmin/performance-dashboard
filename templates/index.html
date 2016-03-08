@@ -9,16 +9,55 @@
     <link rel="stylesheet" href="css/style.css">
 
 
+{% macro serverimage(server) -%}
+    {% if server['bubble-description'] %}
+    <div class="bubble">
+        <span>{{ server['bubble-description'] }}</span>
+    </div>
+    {% endif %}
+    <img src="images/{{ server.image }}" alt="">
+{%- endmacro %}
+
+
 </head>
 <body>
     <div class="container main">
         <div class="row">
             <div class="column">
-                <h1 class="company">{{ general.company }}</h1>
-                <h2 class="header">{{ general.header }}</h2>
-                <span class="subheader">{{ general['sub-header'] }}</span>
+                <div>
+                    <h1 class="company">{{ general.company }}</h1>
+                    <h2 class="header">{{ general.header }}</h2>
+                    <span class="subheader">{{ general['sub-header'] }}</span>
+                </div>
+                <div class="header-image">
+                    <img src="images/{{ general['header-image'] }}" alt="">
+                </div>
             </div>
+        </div>
+        <div class="row server-area">
+        {% for server in infrastructure %}
+        <div class="column">
+            <div class="server-header">
+                <h1 class="server-title {{ server.title_layout }}">{{ server.title }}</h1>
+                <span class="server-sub-title {{ server.title_layout }}">{{ server['sub-title'] }}</span>
+            </div>
+            <div>
+                {% if server.layout == 'right' %}
+                <div>
+                    {{ serverimage(server) }}
+                </div>
+                {% endif %}
+                {% for metric in server.metrics %}
+                <div>
 
+                </div>
+                {% endfor %}
+                {% if server.layout == 'left' %}
+                    {{ serverimage(server) }}
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
         </div>
 
     </div>

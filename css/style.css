@@ -1,8 +1,14 @@
+body {
+    color: #32383D;
+}
+
 .main {
     margin-top: 10rem;
     max-width: 900px;
     text-align: center;
 }
+
+/* Top header */
 
 .company {
     font-size: 9rem;
@@ -16,6 +22,37 @@
     font-size: 2.5rem;
 }
 
-body {
-    color: #32383D;
+.header-image {
+    padding-top: 2rem;
+}
+
+/* Metrics section */
+
+.server-area {
+    padding-top: 5rem;
+}
+
+.server-title {
+    font-size: 4rem;
+    border-bottom: 1px #898C8E solid;
+}
+
+.server-header {
+    position: relative;
+}
+
+.server-sub-title {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50px;
+}
+
+.left {
+    text-align: left;
+    left: 0px;
+}
+
+.right {
+    text-align: right;
+    right: 0px;
 }
