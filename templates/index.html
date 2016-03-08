@@ -4,13 +4,23 @@
     <title>Performance Dashboard - Server Density</title>
     <meta name="description" content="Your own dashboard to show off how impressive and well you are managing your infrastructure.">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="assets/css/normalize.css">
-    <link rel="stylesheet" href="assets/css/milligram.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/milligram.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
 
 </head>
 <body>
-    {{ test }}
+    <div class="container main">
+        <div class="row">
+            <div class="column">
+                <h1 class="company">{{ general.company }}</h1>
+                <h2 class="header">{{ general.header }}</h2>
+                <span class="subheader">{{ general['sub-header'] }}</span>
+            </div>
+
+        </div>
+
+    </div>
 </body>
 </html>

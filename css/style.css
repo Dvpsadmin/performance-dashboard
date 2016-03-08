@@ -1,0 +1,21 @@
+.main {
+    margin-top: 10rem;
+    max-width: 900px;
+    text-align: center;
+}
+
+.company {
+    font-size: 9rem;
+}
+
+.header {
+    margin-bottom: 0;
+}
+
+.subheader {
+    font-size: 2.5rem;
+}
+
+body {
+    color: #32383D;
+}

@@ -12,12 +12,14 @@ with open('conf.yml', 'r') as f:
     string = f.read()
     conf = yaml.load(string)
 
+
 def output_html(text):
     if not os.path.isdir(os.path.join(PATH, 'output')):
         os.makedirs(os.path.join(PATH, 'output'))
 
     with open('output/index.html', 'w') as f:
         f.write(text)
+
 
 def copy_assets(files):
     """takes a list of files or directories and copies to output
@@ -40,9 +42,9 @@ def copy_assets(files):
 if __name__ == '__main__':
     env = Environment(loader=FileSystemLoader('templates'))
     template = env.get_template('index.html')
-    data = {'test': 'jinja works'}
+    data = {'general': conf['general']}
     html = template.render(templates_folder='templates', **data)
     output_html(html)
 
-    assets = ['css', 'js', 'LICENSE']
+    assets = ['css', 'js', 'images']
     copy_assets(assets)

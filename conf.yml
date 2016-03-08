@@ -9,8 +9,8 @@
 general:
     company: Server Density
     logo: logo.png
-    header: Look at our statistics
-    sub-header: We achieve this much every day
+    header: This is how our infrastructure performs
+    sub-header: every . single . day
     header-image: big.png
     stack:
         - Php
