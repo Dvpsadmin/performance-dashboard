@@ -34,15 +34,28 @@ def copy_assets(files):
         else:
             shutil.copy(os.path.join(PATH, f), os.path.join(PATH, 'output', f))
 
-
+def get_data(token, conf):
+    pass
 
 # Metrics grouped together.
 # First in group get special treatment.
 
 if __name__ == '__main__':
-    env = Environment(loader=FileSystemLoader('templates'))
+    dev = True
+    if not dev:
+        try:
+            token = os.env['SD_TOKEN']
+        except KeyError:
+            raise KeyError('There needs to be an environment variable called SD_TOKEN')
+        data = get_data(token, conf)
+    else:
+        data = {}
+
+    env = Environment(
+        loader=FileSystemLoader('templates')
+    )
     template = env.get_template('index.html')
-    data = {'general': conf['general']}
+    data = {'general': conf['general'], 'infrastructure': conf['infrastructure']}
     html = template.render(templates_folder='templates', **data)
     output_html(html)
 

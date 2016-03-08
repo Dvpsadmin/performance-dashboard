@@ -10,40 +10,43 @@ general:
     company: Server Density
     logo: logo.png
     header: This is how our infrastructure performs
-    sub-header: every . single . day
-    header-image: big.png
+    sub-header: the last 24 hours. Every digit is up to date
+    header-image: main-image.png
     stack:
         - Php
         - Python
         - Storm
     rounding: 0
 infrastructure:
-    group1: # Naming does not matter, but might make it easier for you.
-        title: Api Load balancers
-        sub-title: Some other info
-        metrics:
-            - metrickey: cpustats.all
-              calculation: average
-              rate-description: queries/s
-              bubble-description: This metric says it all
-              grouped: cpu
-              order: 1
-            - - metric2
+    - title: Api Load Balancers
+      sub-title: Serving thousands of requests a day
+      layout: left # splits metrics into half and has metrics data on either side of image.
+      title_layout: right
+      image: server.svg
+      size: 50
+      group: Api Load Balancers
+      # tag: optional
+      bubble-description: This metric says it all
+      metrics:
+          - metrickey: cpustats.all
+            calculation:
               - average
-            - metric3
-        group: API Load Balancers
-        image: test.png
-        size: 1-2
-    group2:
-        title: Service Actors
-        metrics:
-            - metric1
-            - metric2
-        group: Actors
-        image: test.png
-        size: 1
-        metric:
-            -   metricName: test
-                calculation: test
-                description: queries/s
-            - test
+              - max
+            display-preference: average
+            average-title: CPU usage
+            average-unit: queries/s
+            average-stat: 412
+            max-title: "Peak: "
+            max-unit: q/s
+            max-stat: 1341
+          - metrickey: cpustats.nice
+            calculation:
+              - average
+              - max
+            display-preference: max
+            average-title: Nice usage
+            average-unit: "%"
+            average-stat: 10
+            max-title: "Peak: "
+            max-unit: M
+            max-stat: 7
