@@ -39,7 +39,7 @@ body {
 
 .server-header {
     position: relative;
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .server-sub-title {
@@ -141,6 +141,14 @@ body {
 
 .circle-center {
 
+}
+/* end circle-frame module */
+
+/* footer */
+.footer {
+    margin-top: 9rem;
+    margin-bottom: 3rem;
+    height: 4rem;
 }
 
 /* Addition to grid layout */
