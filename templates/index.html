@@ -23,7 +23,7 @@
 {%- endmacro %}
 
 {% macro circle_frame(metric) -%}
-    <div class="radius column">
+    <div class="column">
         <div class="circle-frame center-horizontal-child">
             {% for calculation in metric.calculation %}
             {% if loop.index == 1 %}
@@ -41,6 +41,26 @@
         </div>
     </div><!-- macro for module circle frame -->
 {%- endmacro %}
+
+{% macro circle_filled(metric) -%}
+    <div class="column">
+        <div class="circle-filled center-horizontal-child">
+        {% for calculation in metric.calculation %}
+        {% if loop.index == 1 %}
+            <span class="filled-stat-title">{{ metric[calculation + '_title'] }}</span>
+            <span class="filled-number">{{ metric[calculation + '_stat'] }}</span>
+            <span class="filled-unit">{{ metric[calculation + '_unit'] }}</span>
+        {% else %}
+            <span class="filled-secondary-metric">
+                {{ metric[calculation + '_title']}}: {{ metric[calculation + '_stat'] }} {{ metric[calculation + '_unit'] }}
+            </span>
+        {% endif %}
+        {% endfor %}
+        </div>
+
+    </div>
+{%- endmacro %}
+
 
 </head>
 <body>
@@ -71,7 +91,9 @@
 
                 {% for metric in server.metrics %}
                     {% if  metric.style|default('circle-frame') == 'circle-frame' %}
-                    {{ circle_frame(metric) }}
+                        {{ circle_frame(metric) }}
+                    {% elif metric.style == 'circle-filled' %}
+                        {{ circle_filled(metric) }}
                     {% endif %} <!-- more styles to display -->
                 {% endfor %}
 

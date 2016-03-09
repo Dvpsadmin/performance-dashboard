@@ -104,6 +104,35 @@ body {
 }
 
 
+/* Circle filled module */
+
+.circle-filled {
+    border-radius: 50%;
+    background-color: #3741AD;
+    color: #FFF;
+    width: 150px;
+    height: 150px;
+}
+
+.filled-stat-title {
+    font-size: 1.4rem;
+}
+
+.filled-number {
+    font-size: 3.2rem;
+    line-height: 1;
+    padding-top: 0.2rem;
+}
+
+.filled-unit {
+    font-size: 1.4rem;
+}
+
+.filled-secondary-metric {
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
 /* Circle frame module */
 .circle-frame {
     border-radius: 50%;
@@ -137,6 +166,7 @@ body {
     font-weight: 400;
     color: #535970;
     font-size: 1.5rem;
+    line-height: 1;
 }
 
 .circle-center {
