@@ -10,7 +10,7 @@
 
 
 {% macro serverimage(server) -%}
-    <div class="image-section column">
+    <div class="image-section column center-horizontal-child">
     {% if server['bubble-description'] %}
         <div class="arrow_box">
             <span>{{ server['bubble-description'] }}</span>
@@ -22,6 +22,25 @@
     </div>
 {%- endmacro %}
 
+{% macro circle_frame(metric) -%}
+    <div class="radius column">
+        <div class="circle-frame center-horizontal-child">
+            {% for calculation in metric.calculation %}
+            {% if loop.index == 1 %}
+                <div class="metric-stat">
+                    <span class="number">{{ metric[calculation + '_stat'] }}</span>
+                    <span class="unit">{{ metric[calculation + '_unit'] }}</span>
+                </div>
+                <span class="stat-title">{{ metric[calculation + '_title'] }}</span>
+            {% else %}
+                <span class="secondary-metric">
+                    {{ metric[calculation + '_title'] }}: {{ metric[calculation + '_stat'] }} {{ metric[calculation + '_unit'] }}
+                </span>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div><!-- macro for module circle frame -->
+{%- endmacro %}
 
 </head>
 <body>
@@ -38,35 +57,22 @@
                 </div>
             </div>
         </div>
-        <div class="row server-area flex-wrap">
+        <div class="row flex-wrap">
         {% for server in infrastructure %}
-        <div class="column column-{{ server.size|default('100') }}">
+        <div class="column column-{{ server.size|default('100') }} server-area">
             <div class="server-header">
                 <h1 class="server-title text-{{ server.title_layout|default('left') }}">{{ server.title }}</h1>
-                <span class="server-sub-title text-{ server.title_layout|default('left') }}">{{ server['sub-title'] }}</span>
+                <span class="server-sub-title text-{{ server.title_layout|default('left') }}">{{ server['sub-title'] }}</span>
             </div>
             <div class="row">
                 {% if server.layout == 'right' %}
                     {{ serverimage(server) }}
                 {% endif %}
+
                 {% for metric in server.metrics %}
-                <div class="radius column">
-                    <div class="circle-frame">
-                    {% for calculation in metric.calculation %}
-                        {% if loop.index == 1 %}
-                            <div class="metric-stat">
-                                <span class="number">{{ metric[calculation + '_stat'] }}</span>
-                                <span class="unit">{{ metric[calculation + '_unit'] }}</span>
-                            </div>
-                            <span class="stat-title">{{ metric[calculation + '_title'] }}</span>
-                        {% else %}
-                            <span class="secondary-metric">
-                                {{ metric[calculation + '_title'] }}: {{ metric[calculation + '_stat'] }} {{ metric[calculation + '_unit'] }}
-                            </span>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
+                    {% if  metric.style|default('circle-frame') == 'circle-frame' %}
+                    {{ circle_frame(metric) }}
+                    {% endif %} <!-- more styles to display -->
                 {% endfor %}
 
                 {% if server.layout == 'left' %}

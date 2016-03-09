@@ -29,7 +29,7 @@ body {
 /* Metrics section */
 
 .server-area {
-    padding-top: 5rem;
+    margin-top: 5rem;
 }
 
 .server-title {
@@ -108,8 +108,8 @@ body {
 .circle-frame {
     border-radius: 50%;
     border: 2px solid #878B8E;
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
 }
 
 .metric-stat {
@@ -129,6 +129,7 @@ body {
 .stat-title {
     color: #61B58F;
     font-size: 1.9rem;
+    font-weight: 200;
 }
 
 .secondary-metric {
@@ -152,4 +153,12 @@ body {
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.center-horizontal-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
 
