@@ -10,12 +10,16 @@
 
 
 {% macro serverimage(server) -%}
+    <div class="image-section column">
     {% if server['bubble-description'] %}
-    <div class="bubble">
-        <span>{{ server['bubble-description'] }}</span>
-    </div>
+        <div class="arrow_box">
+            <span>{{ server['bubble-description'] }}</span>
+        </div>
     {% endif %}
-    <img src="images/{{ server.image }}" alt="">
+        <div class="server-image">
+            <img src="images/{{ server.image }}" alt="">
+        </div>
+    </div>
 {%- endmacro %}
 
 
@@ -34,24 +38,37 @@
                 </div>
             </div>
         </div>
-        <div class="row server-area">
+        <div class="row server-area flex-wrap">
         {% for server in infrastructure %}
-        <div class="column">
+        <div class="column column-{{ server.size|default('100') }}">
             <div class="server-header">
-                <h1 class="server-title {{ server.title_layout }}">{{ server.title }}</h1>
-                <span class="server-sub-title {{ server.title_layout }}">{{ server['sub-title'] }}</span>
+                <h1 class="server-title text-{{ server.title_layout|default('left') }}">{{ server.title }}</h1>
+                <span class="server-sub-title text-{ server.title_layout|default('left') }}">{{ server['sub-title'] }}</span>
             </div>
-            <div>
+            <div class="row">
                 {% if server.layout == 'right' %}
-                <div>
                     {{ serverimage(server) }}
-                </div>
                 {% endif %}
                 {% for metric in server.metrics %}
-                <div>
-
+                <div class="radius column">
+                    <div class="circle-frame">
+                    {% for calculation in metric.calculation %}
+                        {% if loop.index == 1 %}
+                            <div class="metric-stat">
+                                <span class="number">{{ metric[calculation + '_stat'] }}</span>
+                                <span class="unit">{{ metric[calculation + '_unit'] }}</span>
+                            </div>
+                            <span class="stat-title">{{ metric[calculation + '_title'] }}</span>
+                        {% else %}
+                            <span class="secondary-metric">
+                                {{ metric[calculation + '_title'] }}: {{ metric[calculation + '_stat'] }} {{ metric[calculation + '_unit'] }}
+                            </span>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
                 {% endfor %}
+
                 {% if server.layout == 'left' %}
                     {{ serverimage(server) }}
                 {% endif %}

@@ -1,6 +1,7 @@
 import os
 import json
 import shutil
+import codecs
 
 import yaml
 from jinja2 import Environment, FileSystemLoader
@@ -17,7 +18,7 @@ def output_html(text):
     if not os.path.isdir(os.path.join(PATH, 'output')):
         os.makedirs(os.path.join(PATH, 'output'))
 
-    with open('output/index.html', 'w') as f:
+    with codecs.open('output/index.html', 'w', encoding='utf8') as f:
         f.write(text)
 
 
