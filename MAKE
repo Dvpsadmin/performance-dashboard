@@ -7,6 +7,16 @@ generate:
 	pip install -r requirements/base.txt
 	python performancepage.py
 
+.PHONY: available
+available:
+	pip install -r requirements/base.txt
+	python available.py
+
+.PHONY: generate_dev
+generate_dev:
+	pip install -r requirements/base.txt
+	python performancepage.py --dev
+
 .PHONY: publish
 publish:
 	pip install -r requirements/base.txt
