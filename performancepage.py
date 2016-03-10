@@ -6,6 +6,7 @@ import codecs
 import yaml
 from jinja2 import Environment, FileSystemLoader
 
+from datawrapper import DataWrapper
 
 PATH = os.getcwd()
 
@@ -52,17 +53,21 @@ if __name__ == '__main__':
         try:
             token = os.env['SD_TOKEN']
         except KeyError:
-            raise KeyError('There needs to be an environment variable called SD_TOKEN')
-        data = get_data(token, conf)
+            token = raw_input('What is your token for Server Density: ').strip()
+            os.env['SD_TOKEN'] = token
+        data_container = DataWrapper(token, conf)
+        data_container.gather_data()
+        data = data_container.conf
+        data['historic_data'] = data_container.historic_data
     else:
-        data = {}
+        # open a dev conf file that you can play around with
+        data = conf
 
     env = Environment(
         loader=FileSystemLoader('templates')
     )
     env.filters['round_with_letter'] = round_with_letter
     template = env.get_template('index.html')
-    data = {'general': conf['general'], 'infrastructure': conf['infrastructure']}
     html = template.render(templates_folder='templates', **data)
     output_html(html)
 
