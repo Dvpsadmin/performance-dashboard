@@ -14,6 +14,10 @@ with open('conf.yml', 'r') as f:
     conf = yaml.load(string)
 
 
+def round_with_letter(value, letter):
+    return "{} {}".format(int(value), letter)
+
+
 def output_html(text):
     if not os.path.isdir(os.path.join(PATH, 'output')):
         os.makedirs(os.path.join(PATH, 'output'))
@@ -35,6 +39,7 @@ def copy_assets(files):
         else:
             shutil.copy(os.path.join(PATH, f), os.path.join(PATH, 'output', f))
 
+
 def get_data(token, conf):
     pass
 
@@ -55,6 +60,7 @@ if __name__ == '__main__':
     env = Environment(
         loader=FileSystemLoader('templates')
     )
+    env.filters['round_with_letter'] = round_with_letter
     template = env.get_template('index.html')
     data = {'general': conf['general'], 'infrastructure': conf['infrastructure']}
     html = template.render(templates_folder='templates', **data)

@@ -9,6 +9,18 @@
     <link rel="stylesheet" href="css/style.css">
 
 
+{% macro short_no(number) -%}
+    {% if number > 1000000000 %}
+        {{ number/1000000000|round_with_letter("B") }}
+    {% elif number > 1000000 %}
+        {{ number/1000000|round_with_letter("M") }}
+    {% elif number > 1000 %}
+        {{ number/1000|round_with_letter("K") }}
+    {% else %}
+        {{ number }}
+    {% endif %}
+{%- endmacro %}
+
 {% macro serverimage(server) -%}
     <div class="image-section column center-horizontal-child">
     {% if server['bubble-description'] %}
