@@ -18,6 +18,15 @@ with open('conf.yml', 'r') as f:
 def round_with_letter(value, letter):
     return "{} {}".format(int(value), letter)
 
+def access_token_file(method, value=None):
+    """method, either reading or writing"""
+    with codecs.open('.token', method) as f:
+        if method == 'r':
+            return f.read().strip()
+        elif method == 'w':
+            f.write(value)
+        else:
+            raise Exception('Only accepts "r" or "w"')
 
 def output_html(text):
     if not os.path.isdir(os.path.join(PATH, 'output')):
@@ -48,13 +57,13 @@ def get_data(token, conf):
 # First in group get special treatment.
 
 if __name__ == '__main__':
-    dev = True
+    dev = False
     if not dev:
         try:
-            token = os.environ['SD_TOKEN']
-        except KeyError:
+            token = access_token_file('r')
+        except IOError:
             token = raw_input('What is your token for Server Density: ').strip()
-            os.environ['SD_TOKEN'] = token
+            access_token_file('w', token)
         data_container = DataWrapper(token, conf)
         data_container.gather_data()
         data = data_container.conf

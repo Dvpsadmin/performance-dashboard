@@ -5,6 +5,8 @@
 # sum
 # min
 
+# Size, valid sizes are the following 10, 20, 25, 33, 34, 50, 60, 66, 67, 75, 80, 90, 100
+
 general:
     company: Acme Corporation
     logo: logo.png
@@ -16,16 +18,16 @@ general:
         - Php
         - Python
         - Storm
-    round: 0 # optional, defaults to 0, rounds your numbers to X digits except
+    round: 0 # optional, defaults to 2. It rounds numbers to X digits when number is less than 1. Otherwise in gives you whole numbers.
 infrastructure:
     - title: API Load Balancers
       sub-title: Serving thousands of requests a day
       image_layout: right # optional, sets the image on either left or right of the metrics. Omit it for no image.
       title_layout: right # optional, defaults to left. The title of the group
-      image: server.svg
+      image: kitten.jpg
       size: 100  # optional, defaults to 100. Set the percentage of how much the group should occupy on the page
       group: API Load Balancers # Either group or tag is required.
-      tag: optional # either group or tag is required
+      tag:  # optional either group or tag is required
       bubble-description: This metric says it all # optional, sets a bubble above the image.
       metrics:
           - metrickey: cpustats.all # The metrickey, you can find your available metrickeys in available.md
@@ -38,7 +40,7 @@ infrastructure:
             max_title: Peak
             max_unit: q/s
             max_stat: 1341
-            style: circle-filled
+            style: circle-filled # These are modules, you can look at the readme and see what modules are available to use.
           - metrickey: cpustats.nice
             calculation:
               - average

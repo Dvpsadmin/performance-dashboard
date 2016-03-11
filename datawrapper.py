@@ -8,6 +8,8 @@ from serverdensity.wrapper import Tag
 from serverdensity.wrapper import Metrics
 
 
+# summing lists map(sum, izip(a,b))
+
 class DataWrapper(object):
 
     def __init__(self, token, conf):
@@ -61,7 +63,7 @@ class DataWrapper(object):
     def _get_metrics(self, metric, devices):
         """For all devices associated with the group or device"""
         metric = metric.split('.')
-        metric_filter = self.metric_filter()
+        metric_filter = self.metric_filter(metric)
         end = dt.datetime.now()
         start = end - timedelta(hours=24)
         data_entries = []
@@ -70,6 +72,11 @@ class DataWrapper(object):
             data = self._data_node(data)
             if data['data']:
                 data_entries.append(data)
+        if not data_entries:
+            metric = '.'.join(metric)
+            # Append zero data to avoid zerodivison error
+            data_entries.append({'data': [{'x': 0, 'y': 0}]})
+            logging.warning('No server in this group has any data on {}'.format(metric))
         return data_entries
 
     def _data_node(self, data, names=None):
@@ -159,7 +166,7 @@ class DataWrapper(object):
                 dic = {metric: filter}
                 return self.metric_filter(metrics, dic)
             except IndexError:
-                return metrics, filter
+                return filter
 
     def available(self):
         """Assumes that all metrics are the same for a group or a tag"""
