@@ -51,10 +51,10 @@ if __name__ == '__main__':
     dev = True
     if not dev:
         try:
-            token = os.env['SD_TOKEN']
+            token = os.environ['SD_TOKEN']
         except KeyError:
             token = raw_input('What is your token for Server Density: ').strip()
-            os.env['SD_TOKEN'] = token
+            os.environ['SD_TOKEN'] = token
         data_container = DataWrapper(token, conf)
         data_container.gather_data()
         data = data_container.conf

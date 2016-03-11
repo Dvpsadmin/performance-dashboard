@@ -11,10 +11,10 @@ with codecs.open('conf.yml', 'r') as f:
 
 if __name__ == '__main__':
     try:
-        token = os.env['SD_TOKEN']
+        token = os.environ['SD_TOKEN']
     except KeyError:
         token = raw_input('What is your token for Server Density: ').strip()
-        os.env['SD_TOKEN'] = token
+        os.environ['SD_TOKEN'] = token
 
     data = DataWrapper(token, conf)
     data.available() # generates a file called available.md
