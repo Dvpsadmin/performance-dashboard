@@ -39,7 +39,7 @@ body {
 
 .server-header {
     position: relative;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .server-sub-title {
@@ -182,6 +182,10 @@ body {
 }
 
 /* Addition to grid layout */
+
+.row .column {
+    margin-top: 2rem;
+}
 
 .column-100 {
     flex: 0 0 100% !important;
