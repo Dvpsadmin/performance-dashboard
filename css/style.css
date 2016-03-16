@@ -184,7 +184,7 @@ body {
 /* Addition to grid layout */
 
 .column-100 {
-    flex: 0 0 100%;
+    flex: 0 0 100% !important;
     max-width: 100%;
 }
 

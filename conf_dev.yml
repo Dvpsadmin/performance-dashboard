@@ -51,3 +51,65 @@ infrastructure:
             max_title: Peak
             max_unit: M
             max_stat: 7
+    - title: Some other stats
+      sub-title: Serving thousands of requests a day
+      image_layout: right
+      title_layout: right
+      image: kitten.jpg
+      size: 50
+      group: API Load Balancers
+      tag:
+      bubble-description: This metric says it all
+      metrics:
+          - metrickey: cpustats.all
+            calculation:
+              - average
+              - max
+            average_title: CPU usage
+            average_unit: queries/s
+            average_stat: 412
+            max_title: Peak
+            max_unit: q/s
+            max_stat: 1341
+            style: circle-filled
+          - metrickey: cpustats.nice
+            calculation:
+              - average
+              - max
+            average_title: Nice usage
+            average_unit: "%"
+            average_stat: 10
+            max_title: Peak
+            max_unit: M
+            max_stat: 7
+    - title: Third block of stats
+      sub-title: Serving thousands of requests a day
+      image_layout: right
+      title_layout: right
+      image: kitten.jpg
+      size: 50
+      group: API Load Balancers
+      tag:
+      bubble-description: This metric says it all
+      metrics:
+          - metrickey: cpustats.all
+            calculation:
+              - average
+              - max
+            average_title: CPU usage
+            average_unit: queries/s
+            average_stat: 412
+            max_title: Peak
+            max_unit: q/s
+            max_stat: 1341
+            style: circle-filled
+          - metrickey: cpustats.nice
+            calculation:
+              - average
+              - max
+            average_title: Nice usage
+            average_unit: "%"
+            average_stat: 10
+            max_title: Peak
+            max_unit: M
+            max_stat: 7

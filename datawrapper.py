@@ -7,8 +7,9 @@ from serverdensity.wrapper import Device
 from serverdensity.wrapper import Tag
 from serverdensity.wrapper import Metrics
 
-
-# summing lists map(sum, izip(a,b))
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("requests").setLevel(logging.WARNING)
+# summing lists map(sum, izip(a,b)) vector style.
 
 class DataWrapper(object):
 
@@ -115,6 +116,9 @@ class DataWrapper(object):
         data_points = self._get_data_points(data_entries)
         return self._round(max(data_points))
 
+    def calc_latest(self, data_entries):
+        pass
+
     def calc_min(self, data_entries):
         return self._round(min(self._get_data_points(data_entries)))
 
@@ -174,6 +178,13 @@ class DataWrapper(object):
         md = '# Available metrics for all your groups\n\n'
 
         for infra_conf in infrastructure:
+            if infra_conf.get('group'):
+                category = infra_conf['group']
+            elif infra_conf.get('tag'):
+                category = infra_conf['tags']
+            else:
+                raise Exception('You need to provide either a group or tag')
+            logging.info('Gathering metrics from {}...'.format(category))
             devices = self._get_devices(infra_conf)
             device = devices[0]
             end = dt.datetime.now()
@@ -181,13 +192,13 @@ class DataWrapper(object):
             available = self.metrics.available(device['_id'], start, end)
             metrics = self.flatten(available)
             try:
-                md += '##{}\n'.format(infra_conf['title'])
+                md += '## {}\n'.format(infra_conf['title'])
             except KeyError:
                 raise KeyError('Each section need a title, go on fill one in and try again.')
             for metric in metrics:
                 title = ' '.join([tup[0] for tup in metric])
                 metric = '.'.join([tup[1] for tup in metric])
-                entry = '###{}\nmetrickey: {}\n\n'.format(title, metric)
+                entry = '##### {}\nmetrickey: {}\n\n'.format(title, metric)
                 md += entry
         with codecs.open('available.md', 'w') as f:
             f.write(md)

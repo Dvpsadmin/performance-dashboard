@@ -20,6 +20,12 @@ def round_with_letter(value, letter):
 
 def access_token_file(method, value=None):
     """method, either reading or writing"""
+    try:
+        token = os.environ['SD_AUTH_TOKEN']
+        return token
+    except KeyError:
+        pass
+
     with codecs.open('.token', method) as f:
         if method == 'r':
             return f.read().strip()
@@ -57,7 +63,7 @@ def get_data(token, conf):
 # First in group get special treatment.
 
 if __name__ == '__main__':
-    dev = False
+    dev = True
     if not dev:
         try:
             token = access_token_file('r')
@@ -70,6 +76,8 @@ if __name__ == '__main__':
         data['historic_data'] = data_container.historic_data
     else:
         # open a dev conf file that you can play around with
+        with codecs.open('conf_dev.yml', 'r') as f:
+            conf = yaml.load(f.read())
         data = conf
 
     env = Environment(

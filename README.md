@@ -34,7 +34,7 @@ Once you're happy with the configuration you can run `make generate` to generate
 To get the layout all fancy and look good, a faster option is to not work with data that you fetch each time. Just run `make generate_dev` to generate the template without live data.
 
 ## Update the data every 24 hours 
-So when you made sure that your page successfully builds. Make sure that the your performance page is up and running at travis. To get the most recent statistics you can use the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours which will give the most recent stats from your servers on the page. 
+When you made sure that your page successfully builds. The next step is to make configurations for Travis. To display the most recent statistics you can use the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
 
 ## Configuration
 
@@ -46,24 +46,19 @@ Link to config file example.
 
 ### Use a subdomain
 
-(needs rewriting)
+If you want to use your own domain to host your status page, you'll need to create a CNAME file in your repository and set up a CNAME record pointing to that page with your DNS provider.
 
-If you want to use your own domain to host your status page, you'll need to create a CNAME file
-in your repository and set up a CNAME record pointing to that page with your DNS provider.
-
-If you have e.g. the domain `mydomain.com`, your GitHub username is `myusername` and you want 
-your status page to be reachable at `status.mydomain.com`
+If you have e.g. the domain `mydomain.com`, your GitHub username is `myusername` and you want your status page to be reachable at `performance.mydomain.com`
 
 
 - Create a `CNAME` file in the root of your repository
 
-        status.mydomain.com
+        performance.mydomain.com
     
 - Go to your DNS provider and create a new CNAME record pointing to your
 
-  
-          Name     Type      Value 
-          status   CNAME     myusername.github.io
+          Name          Type      Value 
+          performance   CNAME     myusername.github.io
 
 See [Using a custom domain with GitHub Pages](https://help.github.com/articles/using-a-custom-domain-with-github-pages/) 
 for more info.
