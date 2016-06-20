@@ -65,7 +65,8 @@ def get_data(token, conf):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Make the performance page')
-    parser.add_argument('--dev', help='Use Development configuration', nargs='?', default=True)
+    parser.add_argument('--dev', dest='dev', action='store_true', help='Use Development configuration')
+    parser.set_defaults(dev=False)
 
     args = parser.parse_args([])
     if not args.dev:

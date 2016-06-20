@@ -153,7 +153,7 @@ class DataWrapper(object):
 
         infrastructure = self.conf['infrastructure']
         for infra_conf in infrastructure:
-            # log the steps taken here so you get output.
+            logging.info('Gather data from {}...'.format(infra_conf['title']))
             devices = self._get_devices(infra_conf)
             for metric_conf in infra_conf['metrics']:
                 metric = metric_conf['metrickey']
