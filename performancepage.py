@@ -2,6 +2,7 @@ import os
 import json
 import shutil
 import codecs
+import argparse
 
 import yaml
 from jinja2 import Environment, FileSystemLoader
@@ -63,8 +64,12 @@ def get_data(token, conf):
 # First in group get special treatment.
 
 if __name__ == '__main__':
-    dev = True
-    if not dev:
+    parser = argparse.ArgumentParser(description='Make the performance page')
+    parser.add_argument('--dev', help='Use Development configuration')
+
+    args = parser.parse_args()
+
+    if not args.dev:
         try:
             token = access_token_file('r')
         except IOError:
