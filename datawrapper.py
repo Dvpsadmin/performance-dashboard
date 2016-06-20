@@ -106,11 +106,11 @@ class DataWrapper(object):
                 names.append(d.get('name'))
                 return self._data_node(d.get('tree'), names)
 
-    def _get_data_points(self, data_entries):
+    def _get_data_points(self, data_entries, multiplier):
         """Extract the singular points into a list and return a list of those points"""
         data_points = []
         for data in data_entries:
-            points = [point['y'] for point in data['data']]
+            points = [point['y'] * multiplier for point in data['data']]
             data_points.extend(points)
         return data_points
 
@@ -120,22 +120,19 @@ class DataWrapper(object):
         else:
             return int(round(number, 0))
 
-    def calc_average(self, data_entries):
-        data_points = self._get_data_points(data_entries)
+    def calc_average(self, data_points):
         return self._round(sum(data_points) / len(data_points))
 
-    def calc_max(self, data_entries):
-        data_points = self._get_data_points(data_entries)
+    def calc_max(self, data_points):
         return self._round(max(data_points))
 
-    def calc_latest(self, data_entries):
+    def calc_latest(self, data_points):
         pass
 
-    def calc_min(self, data_entries):
-        return self._round(min(self._get_data_points(data_entries)))
+    def calc_min(self, data_points):
+        return self._round(min(data_points))
 
-    def calc_median(self, data_entries):
-        data_points = self._get_data_points(data_entries)
+    def calc_median(self, data_points):
         data_points.sort()
         start = len(data_points) // 2.0
         if len(data_points) % 2 > 0:
@@ -144,10 +141,10 @@ class DataWrapper(object):
             result = self._round(data_points[start] // 2.0)
         return result
 
-    def calc_sum(self, data_entries):
-        return self._round(sum(self._get_data_points(data_entries)))
+    def calc_sum(self, data_points):
+        return self._round(sum(data_points))
 
-    def calc_raw_average(self, data_entries):
+    def calc_raw_average(self, data_points):
         pass
 
     def gather_data(self):
@@ -160,9 +157,12 @@ class DataWrapper(object):
             devices = self._get_devices(infra_conf)
             for metric_conf in infra_conf['metrics']:
                 metric = metric_conf['metrickey']
+                multiplier = metric_conf.get('multiplier', 1)
                 data_entries = self._get_metrics(metric, devices)
+
                 for method in metric_conf['calculation']:
-                    result = getattr(self, 'calc_{}'.format(method))(data_entries)
+                    data_points = self._get_data_points(data_entries, multiplier)
+                    result = getattr(self, 'calc_{}'.format(method))(data_points)
                     metric_conf['{}_stat'.format(method)] = result
         return self.conf
 
