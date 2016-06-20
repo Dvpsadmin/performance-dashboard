@@ -107,10 +107,11 @@ class DataWrapper(object):
                 return self._data_node(d.get('tree'), names)
 
     def _get_data_points(self, data_entries):
+        """Extract the singular points into a list and return a list of those points"""
         data_points = []
         for data in data_entries:
             points = [point['y'] for point in data['data']]
-            data_points += points
+            data_points.extend(points)
         return data_points
 
     def _round(self, number):
