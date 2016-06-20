@@ -22,7 +22,7 @@ general:
     round: 0 # optional, defaults to 2. It rounds numbers to X digits when number is less than 1. Otherwise in gives you whole numbers.
 infrastructure:
     - title: API Load Balancers
-      sub-title: Serving thousands of requests a day
+      subtitle: Serving thousands of requests a day
       image_layout: right # optional, sets the image on either left or right of the metrics. Omit it for no image.
       title_layout: right # optional, defaults to left. The title of the group
       image: kitten.jpg
@@ -53,7 +53,7 @@ infrastructure:
             max_unit: M
             max_stat: 7
     - title: Some other stats
-      sub-title: Serving thousands of requests a day
+      subtitle: Serving thousands of requests a day
       image_layout: right
       title_layout: right
       image: kitten.jpg
@@ -84,7 +84,7 @@ infrastructure:
             max_unit: M
             max_stat: 7
     - title: Third block of stats
-      sub-title: Serving thousands of requests a day
+      subtitle: Serving thousands of requests a day
       image_layout: right
       title_layout: right
       image: kitten.jpg

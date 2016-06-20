@@ -94,7 +94,7 @@
         <div class="column column-{{ server.size|default('100') }} server-area">
             <div class="server-header">
                 <h1 class="server-title text-{{ server.title_layout|default('left') }}">{{ server.title }}</h1>
-                <span class="server-sub-title text-{{ server.title_layout|default('left') }}">{{ server['sub-title'] }}</span>
+                <span class="server-sub-title text-{{ server.title_layout|default('left') }}">{{ server['subtitle'] }}</span>
             </div>
             <div class="row flex-wrap">
                 {% if server.image_layout == 'right' %}
