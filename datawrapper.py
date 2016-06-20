@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logging.getLogger("requests").setLevel(logging.WARNING)
 # summing lists map(sum, izip(a,b)) vector style.
 
+
 class DataWrapper(object):
 
     def __init__(self, token, conf):
@@ -23,12 +24,11 @@ class DataWrapper(object):
         self.metrics = Metrics(self.token)
 
         self._validation()
-        self._load_historic_data()
 
     def _validation(self):
         """Check the following
         - metric for every piece in infrastructure
-        -
+        - That the configuration contains everything necessary.
         """
 
     def _get_devices(self, infra_conf):
@@ -61,6 +61,13 @@ class DataWrapper(object):
             raise Exception('You have to provide either group or tag for each part of your infrastructure.')
         return devices
 
+    def _merge_loadbalanced_data(self, data_entries, data):
+        max_length = len(data_entries)
+        for i, point in enumerate(data):
+            if i <= max_length:
+                data_entries[i] = data_entries[i]['y'] + point['y']
+        return data_entries
+
     def _get_metrics(self, metric, devices):
         """For all devices associated with the group or device"""
         metric = metric.split('.')
@@ -69,10 +76,14 @@ class DataWrapper(object):
         start = end - timedelta(hours=24)
         data_entries = []
         for device in devices:
+
             data = self.metrics.get(device['_id'], start, end, metric_filter)
             data = self._data_node(data)
             if data['data']:
-                data_entries.append(data)
+                if self.conf.get('load_balanced', True):
+                    data_entries = self._merge_load_balanced_data(data_entries, data)
+                else:
+                    data_entries.append(data)
         if not data_entries:
             metric = '.'.join(metric)
             # Append zero data to avoid zerodivison error
@@ -110,7 +121,7 @@ class DataWrapper(object):
 
     def calc_average(self, data_entries):
         data_points = self._get_data_points(data_entries)
-        return self._round(sum(data_points)/len(data_points))
+        return self._round(sum(data_points) / len(data_points))
 
     def calc_max(self, data_entries):
         data_points = self._get_data_points(data_entries)
@@ -127,7 +138,7 @@ class DataWrapper(object):
         data_points.sort()
         start = len(data_points) // 2.0
         if len(data_points) % 2 > 0:
-            result = (data_points[start] + data_points[start+1]) / 2.0
+            result = (data_points[start] + data_points[start + 1]) / 2.0
         else:
             result = self._round(data_points[start] // 2.0)
         return result
@@ -139,8 +150,12 @@ class DataWrapper(object):
         pass
 
     def gather_data(self):
+        """The main function that gathers all data and returns an updated
+        configuration file that the index template can read"""
+
         infrastructure = self.conf['infrastructure']
         for infra_conf in infrastructure:
+            # log the steps taken here so you get output.
             devices = self._get_devices(infra_conf)
             for metric_conf in infra_conf['metrics']:
                 metric = metric_conf['metrickey']
@@ -149,11 +164,6 @@ class DataWrapper(object):
                     result = getattr(self, 'calc_{}'.format(method))(data_entries)
                     metric_conf['{}_stat'.format(method)] = result
         return self.conf
-
-
-
-    def _load_historic_data(self):
-        pass
 
     def metric_filter(self, metrics, filter=None):
         """from a list of metrics ie ['cpuStats', 'CPUs', 'usr'] it constructs
@@ -202,7 +212,6 @@ class DataWrapper(object):
                 md += entry
         with codecs.open('available.md', 'w') as f:
             f.write(md)
-
 
     def flatten(self, lst):
         """Get all the keys when calling available"""
