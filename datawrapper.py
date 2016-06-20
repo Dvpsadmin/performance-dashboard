@@ -61,12 +61,12 @@ class DataWrapper(object):
             raise Exception('You have to provide either group or tag for each part of your infrastructure.')
         return devices
 
-    def _merge_loadbalanced_data(self, data_entries, data):
-        max_length = len(data_entries)
-        for i, point in enumerate(data):
-            if i <= max_length:
-                data_entries[i] = data_entries[i]['y'] + point['y']
-        return data_entries
+    def _merge_loadbalanced_data(self, data_points, points):
+        max_length = len(data_points)
+        for i, point in enumerate(points):
+            if i < max_length:
+                data_points[i] = data_points[i] + point
+        return data_points
 
     def _get_metrics(self, metric, devices):
         """For all devices associated with the group or device"""
@@ -76,13 +76,9 @@ class DataWrapper(object):
         start = end - timedelta(hours=24)
         data_entries = []
         for device in devices:
-
             data = self.metrics.get(device['_id'], start, end, metric_filter)
             data = self._data_node(data)
             if data['data']:
-                if self.conf.get('load_balanced', True):
-                    data_entries = self._merge_load_balanced_data(data_entries, data)
-                else:
                     data_entries.append(data)
         if not data_entries:
             metric = '.'.join(metric)
@@ -111,7 +107,10 @@ class DataWrapper(object):
         data_points = []
         for data in data_entries:
             points = [point['y'] * multiplier for point in data['data']]
-            data_points.extend(points)
+            if self.conf.get('load_balanced', True) and len(data_points) > 0:
+                self._merge_loadbalanced_data(data_points, points)
+            else:
+                data_points.extend(points)
         return data_points
 
     def _round(self, number):
@@ -159,7 +158,6 @@ class DataWrapper(object):
                 metric = metric_conf['metrickey']
                 multiplier = metric_conf.get('multiplier', 1)
                 data_entries = self._get_metrics(metric, devices)
-
                 for method in metric_conf['calculation']:
                     data_points = self._get_data_points(data_entries, multiplier)
                     result = getattr(self, 'calc_{}'.format(method))(data_points)
