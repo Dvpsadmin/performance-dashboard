@@ -17,7 +17,7 @@ with open('conf.yml', 'r') as f:
 
 
 def round_with_letter(value, letter):
-    return "{} {}".format(int(value), letter)
+    return "{} {}".format(value, letter)
 
 def access_token_file(method, value=None):
     """method, either reading or writing"""
