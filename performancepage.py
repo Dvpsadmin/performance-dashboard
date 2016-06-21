@@ -35,6 +35,7 @@ def access_token_file(method, value=None):
         else:
             raise Exception('Only accepts "r" or "w"')
 
+
 def output_html(text):
     if not os.path.isdir(os.path.join(PATH, 'output')):
         os.makedirs(os.path.join(PATH, 'output'))
@@ -43,25 +44,18 @@ def output_html(text):
         f.write(text)
 
 
-def copy_assets(files):
+def copy_assets(folder):
     """takes a list of files or directories and copies to output
     """
-    for f in files:
-        if os.path.isdir(os.path.join(PATH, f)):
-            try:
-                shutil.copytree(os.path.join(PATH, f), os.path.join(PATH, 'output', f))
-            except OSError:
-                shutil.rmtree(os.path.join(PATH, 'output', f))
-                shutil.copytree(os.path.join(PATH, f), os.path.join(PATH, 'output', f))
-        else:
-            shutil.copy(os.path.join(PATH, f), os.path.join(PATH, 'output', f))
+    if os.path.isdir(os.path.join(PATH, folder)):
+        try:
+            shutil.copytree(os.path.join(PATH, folder), os.path.join(PATH, 'output'))
+        except OSError:
+            shutil.rmtree(os.path.join(PATH, 'output'))
+            shutil.copytree(os.path.join(PATH, folder), os.path.join(PATH, 'output'))
+    else:
+        shutil.copy(os.path.join(PATH, folder), os.path.join(PATH, 'output'))
 
-
-def get_data(token, conf):
-    pass
-
-# Metrics grouped together.
-# First in group get special treatment.
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Make the performance page')
@@ -91,7 +85,5 @@ if __name__ == '__main__':
     env.filters['round_with_letter'] = round_with_letter
     template = env.get_template('index.html')
     html = template.render(templates_folder='templates', **data)
+    copy_assets('source')
     output_html(html)
-
-    assets = ['css', 'js', 'images']
-    copy_assets(assets)

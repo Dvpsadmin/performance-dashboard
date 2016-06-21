@@ -49,7 +49,7 @@ Link to config file example.
 
 ### Use a subdomain
 
-If you want to use your own domain to host your status page, you'll need to create a CNAME file in your repository and set up a CNAME record pointing to that page with your DNS provider.
+If you want to use your own domain to host your performance page, you'll need to create a CNAME file in your repository and set up a CNAME record pointing to that page with your DNS provider.
 
 If you have e.g. the domain `mydomain.com`, your GitHub username is `myusername` and you want your status page to be reachable at `performance.mydomain.com`
 

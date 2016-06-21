@@ -1,13 +1,3 @@
-# Calculation of metrics can be
-# max
-# average
-# median
-# sum
-# min
-# latest
-
-# A metric needs to be a list of
-
 general:
     company: Server Density
     logo: logo.png
