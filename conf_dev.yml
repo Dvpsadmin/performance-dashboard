@@ -13,8 +13,8 @@ general:
     header: Acme servers performs top notch
     sub-header: If something goes wrong, dont blame use, blame the servers
     header-image: main-image.png
-    status_page: # url, optional. The url of your statuspage.io. Fetches the status on load.
-    load-balanced: True
+    statuspage: serverdensity # url, optional. The url of your statuspage.io. Fetches the status on load.
+    load-balanced: False # optional, by default this is true
     stack:
         - Php
         - Python

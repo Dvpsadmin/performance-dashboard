@@ -12,43 +12,191 @@ general:
     company: Server Density
     logo: logo.png
     header: This is how our infrastructure performs
-    sub-header: the last 24 hours. Every digit is up to date
+    sub-header: Metrics from the last 24 hours.
     header-image: main-image.png
+    statuspage: serverdensity # url, optional. If used open page to get status.
     stack:
         - Php
         - Python
         - Storm
-    rounding: 0
+    round: 0 # optional
 infrastructure:
-    - title: Api Load Balancers
-      sub-title: Serving thousands of requests a day
-      layout: left # splits metrics into half and has metrics data on either side of image.
-      title_layout: right
-      image: server.svg
-      size: 50
-      group: Api Load Balancers
+    - title: API Load Balancers
+      subtitle: Serving thousands of requests a day
+      # image_layout: left # splits metrics into half and has metrics data on either side of image.
+      title_layout: right # optional,
+      size: 100  # optional
+      group: API Load Balancers
       # tag: optional
-      bubble-description: This metric says it all
+      # bubble-description: This metric says it all
       metrics:
-          - metrickey: cpustats.all
+          - metrickey: plugins.ApiStatsD.TokenProxyHandler_aggregated_count
+            calculation:
+              - sum
+              - max
+            sum_title: Requests via Api
+            sum_unit: per day
+            sum_stat: 412
+            max_title: Peak
+            max_unit: q/s
+            max_stat: 1341
+            style: circle-filled
+          - metrickey: plugins.ApiStatsD.SessionProxyHandler_aggregated_count
+            calculation:
+              - sum
+              - max
+            sum_title: Requests via UI
+            sum_unit: per day
+            max_title: Peak
+            max_unit: q/s
+          # - metrickey: nginx.nginxReqPerSec
+          #   calculation:
+          #     - average
+          #     - max
+          #   average_title: Nginx Requests
+          #   average_unit: per s
+          #   average_stat: 10
+          #   max_title: Peak
+          #   max_unit: per s
+          #   max_stat: 7
+          - metrickey: memory.memPhysUsed
             calculation:
               - average
-              - max
-            display-preference: average
-            average-title: CPU usage
-            average-unit: queries/s
-            average-stat: 412
-            max-title: "Peak: "
-            max-unit: q/s
-            max-stat: 1341
-          - metrickey: cpustats.nice
+            average_title: Used memory
+            average_unit: mb
+    - title: Inventory usage
+      subtitle: How people use our api to look at the inventory
+      image_layout: left # splits metrics into half and has metrics data on either side of image.
+      title_layout: right # optional,
+      image: kitten.jpg #
+      size: 100  # optional
+      group: Cluster1
+      metrics:
+          - metrickey: plugins.StatsD.devices_update
             calculation:
+              - sum
               - average
               - max
-            display-preference: max
-            average-title: Nice usage
-            average-unit: "%"
-            average-stat: 10
-            max-title: "Peak: "
-            max-unit: M
-            max-stat: 7
+            sum_title: Devices updated
+            sum_unit: / day
+            average_title: avg
+            average_unit: / min
+            max_title: Peak
+          - metrickey: plugins.StatsD.devices_view
+            calculation:
+              - sum
+              - average
+              - max
+            sum_title: Devices viewed
+            average_title: avg
+            average_unit: / min
+            max_title: Peak
+    - title: Notifications
+      subtitle: Notifications is handled by storm, it does a splendid job.
+      image_layout: left # splits metrics into half and has metrics data on either side of image.
+      title_layout: right # optional,
+      image: kitten.jpg #
+      size: 50  # optional
+      tag: storm-notifications
+      metrics:
+          - metrickey: plugins.StatsD.NotificationsBolt_requests
+            calculation:
+              - sum
+              - max
+            sum_title: Sent
+            average_title: Sent Notifications
+            average_unit: per day
+            max_title: Peak
+            max_unit: / min
+    - title: Alerts
+      subtitle: The amount of alerts we see every day
+      image_layout: left # splits metrics into half and has metrics data on either side of image.
+      title_layout: right # optional,
+      image: kitten.jpg #
+      size: 50  # optional
+      tag: alerts
+      metrics:
+          - metrickey: plugins.StatsD.triggered_count_count
+            calculation:
+              - sum
+              - max
+            sum_title: Alerts triggered
+            max_title: Peak
+            style: circle-filled
+    - title: Website monitoring
+      subtitle: We do a lot of service checks in 24H
+      image_layout: left
+      title_layout: right
+      image: kitten.jpg
+      size: 50
+      group: V2Directors
+      metrics:
+        - metrickey: plugins.StatsD.send_count
+          calculation:
+            - sum
+            - max
+          sum_title: Checks sent
+          sum_unit: per day
+          max_title: Peak
+          max_unit: / min
+          style: circle-filled
+    - title: Inventory
+      subtitle: We monitor a lot of devices and services
+      image_layout: left
+      title_layout: right
+      image: kitten.jpg
+      size: 100
+      tag: hperm
+      metrics:
+        - metrickey: plugins.InventoryCount.services
+          calculation:
+            - max
+          max_title: Services
+        - metrickey: plugins.InventoryCount.non-cloud devices
+          calculation:
+            - max
+          max_title: Devices
+        - metrickey: plugins.InventoryCount.cloud devices
+          calculation:
+            - max
+          max_title: Cloud devices
+    - title: Load Balancing
+      subtitle: The total amount of traffic we handle through load balancers
+      title_layout: right
+      group: V2LoadBalancers
+      metrics:
+        - metrickey: networkTraffic.eth0.rxMBitS
+          calculation:
+            - sum
+            - max
+          sum_title: Received through eth0
+          sum_unit: mb
+          max_title: Peak
+          multiplier: 60
+        - metrickey: networkTraffic.eth0.txMBitS
+          calculation:
+            - sum
+            - max
+          sum_title: Sent through eth0
+          sum_unit: mb
+          max_title: Peak
+          multiplier: 60
+        - metrickey: networkTraffic.eth1.rxMBitS
+          calculation:
+            - sum
+            - max
+          sum_title: Received through eth1
+          sum_unit: mb
+          max_title: Peak
+          multiplier: 60
+        - metrickey: networkTraffic.eth1.txMBitS
+          calculation:
+            - sum
+            - max
+          sum_title: Sent through eth1
+          sum_unit: mb
+          max_title: Peak
+          multiplier: 60
+
+
+
