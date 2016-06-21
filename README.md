@@ -75,15 +75,15 @@ Inside the `infrastructure` heading there is a `metrics` heading. The `metrics` 
 | metrickey  | yes      | After having done `make available`, you'll see all the possible keys, this is where you put it. | 
 | calculation | yes     | A yaml list of ways to make calculations for the metric. Possible values are `average`, `sum`, `max`, `median`, `min` |
 | *your_calc*_title | - | if you used average as a calculation method, it should be `average_title` |
-| *your_calc*_unit | - | if you used average as a calculation method, it should be `average_unit` |
-| *your_calc*_stat | - | if you used average as a calculation method, it should be `average_stat`, this is useful for dummy if you quickly want to see how things look when using `make generate_dev` |
-
+| *your_calc*_unit | -  | if you used average as a calculation method, it should be `average_unit` |
+| *your_calc*_stat | -  | if you used average as a calculation method, it should be `average_stat`, this is useful for dummy if you quickly want to see how things look when using `make generate_dev` |
+| style      | no       | uses the different modules defined in `index.html`. The default style is `circle_frame`
 
 ### Template
-The main template file. 
+If you want to make any changes to the page itself you can make the changes in the `index.html` file located in the templates folder 
 
 ### Config file
-Link to config file example. 
+Here is an example of a [configuration file](https://github.com/serverdensity/performance-page/blob/master/conf_dev.yml) and this is the [configuration file](https://github.com/serverdensity/performance-page/blob/master/conf.yml) we used to make our page. 
 
 ### Use a subdomain
 

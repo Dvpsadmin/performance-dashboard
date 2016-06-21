@@ -49,6 +49,7 @@
     </div>
 {%- endmacro %}
 
+{# The style called circle-frame #}
 {% macro circle_frame(metric) -%}
     <div class="column">
         <div class="circle-frame center-horizontal-child">
@@ -66,9 +67,10 @@
             {% endif %}
             {% endfor %}
         </div>
-    </div><!-- macro for module circle frame -->
+    </div>
 {%- endmacro %}
 
+{# The style called circle-filled #}
 {% macro circle_filled(metric) -%}
     <div class="column">
         <div class="circle-filled center-horizontal-child">
@@ -124,7 +126,8 @@
                 {% if server.image and server.image_layout == 'right' %}
                     {{ serverimage(server) }}
                 {% endif %}
-
+                {# If you add different styles you'll need to add an if statement to check
+                for that here. #}
                 {% for metric in server.metrics %}
                     {% if  metric.style|default('circle-frame') == 'circle-frame' %}
                         {{ circle_frame(metric) }}
