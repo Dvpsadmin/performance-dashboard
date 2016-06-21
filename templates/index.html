@@ -99,9 +99,11 @@
                     <h2 class="header">{{ general.header }}</h2>
                     <span class="subheader">{{ general['sub-header'] }}</span>
                 </div>
+                {% if general['header-image'] %}
                 <div class="header-image">
                     <img src="images/{{ general['header-image'] }}" alt="">
                 </div>
+                {% endif %}
                 {% if general.statuspage %}
                 <div class="status-container">
 
@@ -114,10 +116,12 @@
         <div class="column column-{{ server.size|default('100') }} server-area">
             <div class="server-header">
                 <h1 class="server-title text-{{ server.title_layout|default('left') }}">{{ server.title }}</h1>
-                <span class="server-sub-title text-{{ server.title_layout|default('left') }}">{{ server['subtitle'] }}</span>
+                {% if server.subtitle %}
+                <span class="server-sub-title text-{{ server.title_layout|default('left') }}">{{ server.subtitle }}</span>
+                {% endif %}
             </div>
             <div class="row flex-wrap">
-                {% if server.image_layout == 'right' %}
+                {% if server.image and server.image_layout == 'right' %}
                     {{ serverimage(server) }}
                 {% endif %}
 
@@ -129,7 +133,7 @@
                     {% endif %} <!-- more styles to display -->
                 {% endfor %}
 
-                {% if server.image_layout == 'left' %}
+                {% if server.image and server.image_layout == 'left' %}
                     {{ serverimage(server) }}
                 {% endif %}
             </div>

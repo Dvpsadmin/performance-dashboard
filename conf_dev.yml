@@ -9,7 +9,6 @@
 
 general:
     company: Acme Corporation
-    logo: logo.png
     header: Acme servers performs top notch
     sub-header: If something goes wrong, dont blame use, blame the servers
     header-image: main-image.png
