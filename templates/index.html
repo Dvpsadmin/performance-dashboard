@@ -7,7 +7,22 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/milligram.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <script src="js/main.js"></script>
+    {% if general.statuspage %}
+    <script>
+        $.get( "https://{{ general.statuspage }}.statuspage.io/", function( data ) {
+            doc = $($.parseHTML(data))
+            pagestatus = doc.find('.page-status');
 
+            moreInfo = $.parseHTML(
+                '<a href="https://{{ general.statuspage }}.statuspage.io/">More information at statuspage.io</a>'
+            );
+            $(pagestatus).find('.last-updated-stamp').append(moreInfo);
+            $('.status-container').append(pagestatus);
+        });
+    </script>
+    {% endif %}
 
 {% macro short_no(number) -%}
     {% if number > 1000000000 %}
@@ -87,6 +102,11 @@
                 <div class="header-image">
                     <img src="images/{{ general['header-image'] }}" alt="">
                 </div>
+                {% if general.statuspage %}
+                <div class="status-container">
+
+                </div>
+                {% endif %}
             </div>
         </div>
         <div class="row flex-wrap">
@@ -115,6 +135,14 @@
             </div>
         </div>
         {% endfor %}
+        </div>
+        <div class="tech-stack">
+            {% if general.stack %}
+                Our stack
+                {% for stack in general.stack %}
+                    <span style="padding-left: 5px;">{{ stack }}</span>
+                {% endfor %}
+            {% endif %}
         </div>
         <footer>
             <div class="column footer">

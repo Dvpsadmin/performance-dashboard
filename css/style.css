@@ -159,6 +159,8 @@ body {
     color: #61B58F;
     font-size: 1.9rem;
     font-weight: 200;
+    line-height: 1.3;
+    margin-bottom: 0.5rem;
 }
 
 .secondary-metric {
@@ -166,13 +168,17 @@ body {
     font-weight: 400;
     color: #535970;
     font-size: 1.5rem;
-    line-height: 1;
+    line-height: 1.3;
 }
 
 .circle-center {
 
 }
 /* end circle-frame module */
+
+.tech-stack {
+    margin-top: 20px;
+}
 
 /* footer */
 .footer {
@@ -202,5 +208,214 @@ body {
     justify-content: center;
 }
 
+/* Styling from statuspage.io */
+
+.page-status .status {
+    color: #fff;
+    position: relative;
+    top: 2px
+}
+
+.page-status {
+    font-weight: 500;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -o-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.1);
+    text-shadow: 0 1px 0 rgba(0,0,0,0.1);
+    margin-bottom: 70px;
+    margin-top: 30px;
+    padding: 1.15rem 1.25rem
+}
+
+.page-status .font-large {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    font-size: 1.25rem;
+    line-height: 1.8125rem
+}
+
+@media screen and (max-width: 650px) {
+    .page-status .font-large {
+        font-size:18px;
+        line-height: 26.55px;
+        font-size: 1.125rem;
+        line-height: 1.65938rem
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .page-status .font-large {
+        font-size:16px;
+        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem
+    }
+}
+
+.font-small,small {
+    font-size: 14px;
+    line-height: 21.35px;
+    font-size: 0.875rem;
+    line-height: 1.33438rem
+}
+
+.page-status .last-updated-stamp a {
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    float: right;
+    position: relative;
+    top: 7px;
+}
+
+/* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */
+body,
+.layout-content.status.status-api .section .example-container .example-opener .color-secondary,
+.grouped-items-selector {
+background-color:#ffffff;
+}
+
+/* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */ /* PRIMARY FONT COLOR */
+body.status,
+.color-primary,
+.color-primary:hover,
+.layout-content.status-index .status-day .update-title.impact-none a,
+.layout-content.status-index .status-day .update-title.impact-none a:hover,
+.layout-content.status-index .timeframes-container .timeframe.active,
+.layout-content.status-full-history .month .incident-container .impact-none,
+.incidents-list .incident-title.impact-none a,
+.layout-content.status .grouped-items-selector.inline .grouped-item.active {
+    color: #333333;
+}
+
+.components-statuses .component-container .name {
+    color:#333333;
+    color:rgba(51,51,51,.8);
+}
+
+/* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */ /* SECONDARY FONT COLOR */
+small,
+.layout-content.status .table-row .date,
+.color-secondary,
+.layout-content.status .grouped-items-selector.inline .grouped-item {
+    color: #AAAAAA;
+}
+
+/* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */  /* BORDER COLOR */
+body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-display table {
+
+}
+
+.markdown-display table td {
+    border-top-color: #E0E0E0;
+}
+
+.markdown-display table td + td, .markdown-display table th + th {
+    border-left-color: #E0E0E0;
+}
+
+/* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */ /* CSS REDS */
+.status-day .update-title.impact-critical a,
+.status-day .update-title.impact-critical a:hover,
+.page-status.status-critical,
+.unresolved-incident.impact-critical .incident-title,
+.flat-button.background-red {
+    background-color: #d60000;
+}
+.layout-content.status-index .components-statuses .component-container.status-red:after,
+.layout-content.status-full-history .month .incident-container .impact-critical,
+.layout-content.status-incident .incident-name.impact-critical,
+.incidents-list .incident-title.impact-critical a,
+.status-red .icon-indicator,
+.components-container .component-inner-container.status-red .component-status,
+.components-container .component-inner-container.status-red .icon-indicator {
+    color: #d60000;
+}
+
+.unresolved-incident.impact-critical .updates {
+    border-color:#d60000;
+}
+
+/* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */
+.status-day .update-title.impact-major a,
+.status-day .update-title.impact-major a:hover,
+.page-status.status-major,
+.unresolved-incident.impact-major .incident-title {
+    background-color: #ff8000;
+}
+.layout-content.status-index .components-statuses .component-container.status-orange:after,
+.layout-content.status-full-history .month .incident-container .impact-major,
+.layout-content.status-incident .incident-name.impact-major,
+.incidents-list .incident-title.impact-major a,
+.status-orange .icon-indicator,
+.components-container .component-inner-container.status-orange .component-status,
+.components-container .component-inner-container.status-orange .icon-indicator {
+    color: #ff8000;
+}
+
+.unresolved-incident.impact-major .updates {
+    border-color: #ff8000;
+}
+
+/* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */
+.status-day .update-title.impact-minor a,
+.status-day .update-title.impact-minor a:hover,
+.page-status.status-minor,
+.unresolved-incident.impact-minor .incident-title,
+.scheduled-incidents-container .tab {
+    background-color: #f1c40f;
+}
+.layout-content.status-index .components-statuses .component-container.status-yellow:after,
+.layout-content.status-full-history .month .incident-container .impact-minor,
+.layout-content.status-incident .incident-name.impact-minor,
+.incidents-list .incident-title.impact-minor a,
+.status-yellow .icon-indicator,
+.components-container .component-inner-container.status-yellow .component-status,
+.components-container .component-inner-container.status-yellow .icon-indicator {
+    color: #f1c40f;
+}
+
+.unresolved-incident.impact-minor .updates,
+.scheduled-incidents-container {
+    border-color:#f1c40f;
+}
+
+/* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */
+.status-day .update-title.impact-maintenance a,
+.status-day .update-title.impact-maintenance a:hover,
+.page-status.status-maintenance,
+.unresolved-incident.impact-maintenance .incident-title,
+.scheduled-incidents-container .tab {
+    background-color: #3498DB;
+}
+
+.layout-content.status-index .components-statuses .component-container.status-blue:after,
+.layout-content.status-full-history .month .incident-container .impact-maintenance,
+.layout-content.status-incident .incident-name.impact-maintenance,
+.incidents-list .incident-title.impact-maintenance a,
+.status-blue .icon-indicator,
+.components-container .component-inner-container.status-blue .component-status,
+.components-container .component-inner-container.status-blue .icon-indicator {
+    color: #3498DB;
+}
+
+.unresolved-incident.impact-maintenance .updates,
+.scheduled-incidents-container {
+    border-color:#3498DB;
+}
+
+/* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */
+.page-status.status-none {
+    background-color: #80b500;
+}
+.layout-content.status-index .components-statuses .component-container.status-green:after,
+.status-green .icon-indicator,
+.components-container .component-inner-container.status-green .component-status,
+.components-container .component-inner-container.status-green .icon-indicator {
+    color: #80b500;
+}
 
 
