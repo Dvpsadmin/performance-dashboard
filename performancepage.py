@@ -17,7 +17,7 @@ with open('conf.yml', 'r') as f:
 
 
 def round_with_letter(value, letter):
-    return "{} {}".format(value, letter)
+    return "{} {}".format(int(round(value)), letter)
 
 def access_token_file(method, value=None):
     """method, either reading or writing"""
@@ -68,7 +68,7 @@ if __name__ == '__main__':
     parser.add_argument('--dev', dest='dev', action='store_true', help='Use Development configuration')
     parser.set_defaults(dev=False)
 
-    args = parser.parse_args([])
+    args = parser.parse_args()
     if not args.dev:
         try:
             token = access_token_file('r')

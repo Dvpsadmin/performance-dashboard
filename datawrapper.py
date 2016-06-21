@@ -2,10 +2,12 @@ import codecs
 import datetime as dt
 from datetime import timedelta
 import logging
+import time
 
 from serverdensity.wrapper import Device
 from serverdensity.wrapper import Tag
 from serverdensity.wrapper import Metrics
+from serverdensity.wrapper import ApiClient
 
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("requests").setLevel(logging.WARNING)
@@ -18,10 +20,10 @@ class DataWrapper(object):
         self.token = token
         self.conf = conf
         self.historic_data = None
-
+        client = ApiClient(self.token, timeout=(3.05, 18))
         self.device = Device(self.token)
         self.tag = Tag(self.token)
-        self.metrics = Metrics(self.token)
+        self.metrics = Metrics(client)
 
         self._validation()
 
@@ -29,6 +31,7 @@ class DataWrapper(object):
         """Check the following
         - metric for every piece in infrastructure
         - That the configuration contains everything necessary.
+        - check that there are no none values in any lists.
         """
 
     def _get_devices(self, infra_conf):
@@ -44,8 +47,7 @@ class DataWrapper(object):
                 raise Exception(message)
             else:
                 tag_id = tag_id[0]
-
-            devices = [device for device in raw_devices if tag_id in device.get('tags')]
+            devices = [device for device in raw_devices if tag_id in device.get('tags', [])]
             if not devices:
                 available_tags = '\n'.join(list(set([tag['name'] for tag in tags])))
                 raise Exception('There is no device with this tag name. Try one of these: \n{}'.format(available_tags))
@@ -78,8 +80,10 @@ class DataWrapper(object):
         for device in devices:
             data = self.metrics.get(device['_id'], start, end, metric_filter)
             data = self._data_node(data)
+            time.sleep(0.3)
             if data['data']:
-                    data_entries.append(data)
+                data_entries.append(data)
+
         if not data_entries:
             metric = '.'.join(metric)
             # Append zero data to avoid zerodivison error
@@ -114,8 +118,9 @@ class DataWrapper(object):
         return data_points
 
     def _round(self, number):
-        if number < 1:
-            return round(number, self.conf['general'].get('round', 2))
+        rounding = self.conf['general'].get('round', 2)
+        if rounding > 0:
+            return round(number, rounding)
         else:
             return int(round(number, 0))
 
@@ -124,9 +129,6 @@ class DataWrapper(object):
 
     def calc_max(self, data_points):
         return self._round(max(data_points))
-
-    def calc_latest(self, data_points):
-        pass
 
     def calc_min(self, data_points):
         return self._round(min(data_points))
@@ -142,9 +144,6 @@ class DataWrapper(object):
 
     def calc_sum(self, data_points):
         return self._round(sum(data_points))
-
-    def calc_raw_average(self, data_points):
-        pass
 
     def gather_data(self):
         """The main function that gathers all data and returns an updated
