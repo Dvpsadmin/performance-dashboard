@@ -9,6 +9,9 @@ Gif of scrolling.
 ## Future Features
 Open an issue to let us know what kind of features you would like to see. If you are of the creative kind, take a look at the issues and implement a feature!  
 
+    - Save historic data so it can be displayed
+    - UI interface interface for configuration instead of yaml
+
 
 ## Installation
 To be able to get data from your server in the first place you need to monitor your server with Server Density. So go ahead and [sign up for an account](https://www.serverdensity.com) at server density. 
