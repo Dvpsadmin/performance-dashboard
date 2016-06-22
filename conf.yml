@@ -5,13 +5,16 @@ general:
     sub-header: Metrics from the last 24 hours.
     header-image: main-image.png
     statuspage: serverdensity # url, optional. If used open page to get status.
+    timeframe: 24
     stack:
         - Php
         - Python
         - Storm
+        - MongoDb
+        - HaProxy
     round: 0 # optional
 infrastructure:
-    - title: API Load Balancers
+    - title: Load balanced requests # external requests some kind of naming. missing postbacks.
       subtitle: Serving thousands of requests a day
       # image_layout: left # splits metrics into half and has metrics data on either side of image.
       title_layout: right # optional,
@@ -130,26 +133,26 @@ infrastructure:
           max_title: Peak
           max_unit: / min
           style: circle-filled
-    - title: Inventory
-      subtitle: We monitor a lot of devices and services
-      image_layout: left
-      title_layout: right
-      image: kitten.jpg
-      size: 100
-      tag: hperm
-      metrics:
-        - metrickey: plugins.InventoryCount.services
-          calculation:
-            - max
-          max_title: Services
-        - metrickey: plugins.InventoryCount.non-cloud devices
-          calculation:
-            - max
-          max_title: Devices
-        - metrickey: plugins.InventoryCount.cloud devices
-          calculation:
-            - max
-          max_title: Cloud devices
+    # - title: Inventory
+    #   subtitle: We monitor a lot of devices and services
+    #   image_layout: left
+    #   title_layout: right
+    #   image: kitten.jpg
+    #   size: 100
+    #   tag: hperm
+    #   metrics:
+    #     - metrickey: plugins.InventoryCount.services
+    #       calculation:
+    #         - max
+    #       max_title: Services
+    #     - metrickey: plugins.InventoryCount.non-cloud devices
+    #       calculation:
+    #         - max
+    #       max_title: Devices
+    #     - metrickey: plugins.InventoryCount.cloud devices
+    #       calculation:
+    #         - max
+    #       max_title: Cloud devices
     - title: Load Balancing
       subtitle: The total amount of traffic we handle through load balancers
       title_layout: right
@@ -159,7 +162,7 @@ infrastructure:
           calculation:
             - sum
             - max
-          sum_title: Received through eth0
+          sum_title: Traffic recieved internally # internal traffic
           sum_unit: mb
           max_title: Peak
           multiplier: 60
@@ -167,7 +170,7 @@ infrastructure:
           calculation:
             - sum
             - max
-          sum_title: Sent through eth0
+          sum_title: Traffic sent internally
           sum_unit: mb
           max_title: Peak
           multiplier: 60
@@ -175,7 +178,7 @@ infrastructure:
           calculation:
             - sum
             - max
-          sum_title: Received through eth1
+          sum_title: Traffic recieved externally
           sum_unit: mb
           max_title: Peak
           multiplier: 60
@@ -183,10 +186,7 @@ infrastructure:
           calculation:
             - sum
             - max
-          sum_title: Sent through eth1
+          sum_title: Traffic sent externally
           sum_unit: mb
           max_title: Peak
           multiplier: 60
-
-
-

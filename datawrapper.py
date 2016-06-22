@@ -75,7 +75,7 @@ class DataWrapper(object):
         metric = metric.split('.')
         metric_filter = self.metric_filter(metric)
         end = dt.datetime.now()
-        start = end - timedelta(hours=24)
+        start = end - timedelta(hours=self.conf['general'].get('timeframe', 24))
         data_entries = []
         for device in devices:
             data = self.metrics.get(device['_id'], start, end, metric_filter)

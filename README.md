@@ -53,6 +53,7 @@ Let's walk through the configuration options that you can make in `conf.yml`. Th
 | statuspage  | no       | If you have a statuspage at statuspage.io it'll pull your status from there |
 | stack       | no       | A list of your stack which will be displayed at the bottom of the page |
 | round       | no       | Rounding of all numbers, defaults to 2 decimals |
+| timeframe   | no       | The timeframe you want to display the data from. It defaults to `24` meaning that it will pull data from the last 24 hours. 
 
 For the `infrastructure` heading there are the following settings. 
 
