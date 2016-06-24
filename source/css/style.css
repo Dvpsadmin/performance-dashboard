@@ -7,7 +7,7 @@ body {
 }
 
 .main {
-    margin-top: 10rem;
+    margin-top: 5rem;
     max-width: 900px;
     text-align: center;
 }
@@ -15,30 +15,50 @@ body {
 /* Top header */
 
 .company {
-    font-size: 9rem;
+    font-size: 3.2rem;
+    font-weight: 400;
+    margin-bottom: 6rem;
+}
+
+.company-logo {
+    display: inline-block;
+    height: 1.4em;
+    width: auto;
+    vertical-align: -.25em;
+    margin-right: .2em;
 }
 
 .header {
     margin-bottom: 0;
+    font-weight: 500;
+    font-size: 4.5rem;
 }
 
 .subheader {
-    font-size: 2.5rem;
+    margin-top: .6em;
+    font-size: 3rem;
 }
 
 .header-image {
-    padding-top: 2rem;
+    padding-top: 8rem;
+}
+
+.header-image img {
+    max-height: 300px;
+    max-width: 900px;
+    width: auto;
+    height: auto;
+}
+
+.status-container {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
 }
 
 /* Metrics section */
 
 .server-area {
-    margin-top: 5rem;
-}
-
-.server-title {
-    font-size: 4rem;
-    border-bottom: 1px #898C8E solid;
+    margin-top: 4rem;
 }
 
 .server-header {
@@ -46,10 +66,16 @@ body {
     margin-bottom: 3rem;
 }
 
+.server-title {
+    font-size: 3rem;
+    border-bottom: 1px #dddedf solid;
+    padding-bottom: .3em;
+}
+
 .server-sub-title {
     font-size: 1.5rem;
     position: absolute;
-    top: 50px;
+    bottom: -3rem;
 }
 
 .text-left {
