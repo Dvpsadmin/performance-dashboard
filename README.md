@@ -39,7 +39,9 @@ Once you're happy with the configuration you can run `make generate` to generate
 To get the layout all fancy and look good, a faster option is to not work with data that you fetch each time. Just run `make generate_dev` to generate the template without live data.
 
 ## Update the data every 24 hours 
-When you made sure that your page successfully builds. The next step is to make configurations for Travis. To display the most recent statistics you can use the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
+When you made sure that your page successfully builds. The next step is to make configurations for Travis.
+
+Add the project to travis and add an environment variable `SD_AUTH_TOKEN` with a token from the app. After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
 
 ## Configuration
 Let's walk through the configuration options that you can make in `conf.yml`. There are two base levels for the yaml file. `general` and `infrastructure`. For the general settings you have the following. 
