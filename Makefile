@@ -14,8 +14,11 @@ generate:
 
 .PHONY: generate_dev
 generate_dev:
-	pip install -r requirements/base.txt
 	python performancepage.py --dev
+
+.PHONY: watch
+watch:
+	python watch.py
 
 .PHONY: publish
 publish:
