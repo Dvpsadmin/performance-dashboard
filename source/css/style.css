@@ -178,7 +178,7 @@ body {
 /* Circle frame module */
 .circle-frame,
 .square-frame {
-    border: 2px solid #cdcecf;
+    border: 2px solid #bbddff;
     width: 150px;
     height: 150px;
 }
@@ -201,7 +201,7 @@ body {
     line-height: .9em;
     font-weight: 400;
     margin-bottom: .1em;
-    color: #61B58F;
+    color: #0066cc;
 }
 
 .unit {
@@ -209,14 +209,14 @@ body {
 }
 
 .stat-title {
-    color: #61B58F;
+    color: #0066cc;
     font-size: 1.8rem;
     font-weight: 400;
     margin-bottom: .1em;
 }
 
 .secondary-metric {
-    color: #535970;
+    color: #4a4b4c;
     font-size: 1.3rem;
     font-weight: 500;
 }

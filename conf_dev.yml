@@ -114,3 +114,4 @@ infrastructure:
             max_title: Peak
             max_unit: M
             max_stat: 7
+            style: circle-frame
