@@ -102,7 +102,6 @@ body {
     position: relative;
 }
 
-
 .secondary-metric {
     display: block;
 }
@@ -110,39 +109,60 @@ body {
 
 /* Circle filled module */
 
-.circle-filled {
-    border-radius: 50%;
-    background-color: #3741AD;
+.circle-filled,
+.square-filled {
+    background-color: #0066cc;
     color: #FFF;
     width: 150px;
     height: 150px;
 }
 
+.circle-filled {
+    border-radius: 50%;
+}
+
+.square-filled {
+    border-radius: 20%;
+}
+
 .filled-stat-title {
-    font-size: 1.4rem;
-}
-
-.filled-number {
-    font-size: 3.2rem;
-    line-height: 1;
-    padding-top: 0.2rem;
-}
-
-.filled-unit {
-    font-size: 1.4rem;
-}
-
-.filled-secondary-metric {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
+.filled-number {
+    display: inline-block;
+    font-size: 4rem;
+    line-height: .9em;
+    font-weight: 400;
+    margin-top: .1em;
+}
+
+.filled-unit {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: .3em;
+}
+
+.filled-secondary-metric {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
 /* Circle frame module */
-.circle-frame {
-    border-radius: 50%;
-    border: 2px solid #878B8E;
+.circle-frame,
+.square-frame {
+    border: 2px solid #cdcecf;
     width: 150px;
     height: 150px;
+}
+
+.circle-frame {
+    border-radius: 50%;
+}
+
+.square-frame {
+    border-radius: 20%;
 }
 
 .metric-stat {
@@ -150,8 +170,11 @@ body {
 }
 
 .number {
-    line-height: 1;
+    display: inline-block;
     font-size: 4rem;
+    line-height: .9em;
+    font-weight: 400;
+    margin-bottom: .1em;
     color: #61B58F;
 }
 
@@ -161,18 +184,15 @@ body {
 
 .stat-title {
     color: #61B58F;
-    font-size: 1.9rem;
-    font-weight: 200;
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: .1em;
 }
 
 .secondary-metric {
-    display: block;
-    font-weight: 400;
     color: #535970;
-    font-size: 1.5rem;
-    line-height: 1.3;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .circle-center {
