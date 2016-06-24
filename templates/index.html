@@ -16,7 +16,7 @@
             pagestatus = doc.find('.page-status');
 
             moreInfo = $.parseHTML(
-                '<a href="https://{{ general.statuspage }}.statuspage.io/">More information at statuspage.io</a>'
+                '<a href="https://{{ general.statuspage }}.statuspage.io/">{{ general.statuspage }}.statuspage.io</a>'
             );
             $(pagestatus).find('.last-updated-stamp').append(moreInfo);
             $('.status-container').append(pagestatus);
