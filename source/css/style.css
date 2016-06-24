@@ -63,7 +63,7 @@ body {
 
 .server-header {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 }
 
 .server-title {
@@ -240,7 +240,7 @@ body {
 /* Addition to grid layout */
 
 .row .column {
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 .column-100 {
