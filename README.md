@@ -41,7 +41,14 @@ To get the layout all fancy and look good, a faster option is to not work with d
 ## Update the data every 24 hours 
 When you made sure that your page successfully builds. The next step is to make configurations for Travis.
 
-Add the project to travis and add an environment variable `SD_AUTH_TOKEN` with a token from the app. After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
+You'll need to add secure github token to `.travis.yml`. The way to do that is described in [detail here](http://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/). But in short you'll need to do the following. First delete the secure statement that isn't yours. Then get a [github token](https://github.com/settings/tokens) and use it below.
+
+    sudo gem install travis
+    travis encrypt GH_TOKEN=your_token --add
+
+Then in the settings for travis go on and add the following environment variables: `SD_AUTH_TOKEN` with a token from the app and `GH_REPO_SLUG` which is the path to your repo (ie in our case it would be `serverdensity/performance-page`)
+
+After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
 
 ## Configuration
 Let's walk through the configuration options that you can make in `conf.yml`. There are two base levels for the yaml file. `general` and `infrastructure`. For the general settings you have the following. 

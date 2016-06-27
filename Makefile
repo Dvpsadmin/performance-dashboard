@@ -27,6 +27,12 @@ publish:
 	ghp-import -m "Generate Performance page" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
 	git push origin $(GITHUB_PAGES_BRANCH)
 
+.PHONY: publish_travis
+publish_travis:
+	pip install -r requirements/base.txt
+	python performancepage.py
+	ghp-import -m "Generate Performance page" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
+
 .PHONY: test
 test:
 	pass

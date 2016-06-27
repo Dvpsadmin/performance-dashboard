@@ -1,3 +1,7 @@
 language: python
 script:
-- make publish
+- make publish_travis
+- git push -f https://${GH_TOKEN}@github.com/${GH_REPO_SLUG}.git gh-pages
+env:
+  global:
+    secure: JK2WMvE0H0ow+Pw+imHWi2ZVF+PXF6pl/v0AvR5MR4/cDeIXKr9rgbB4nUsDDcxPsAIpl3FMzar0CPzuzFQAeW64eGp+CedN6979UVqNmXN51fEvEipzZFfyiWT7+OOSzw11HlPz4dqBAKR1AStVNhTbnmRPKz/oh9ku9S4xRUaIpqFhpDoS7zkXsnwOgkx9WZNJ5TJo+Pr05o4sT8PflX0f8iWX2i305xENHD268aIwgeU/CFhgZei57hf+N8p3TD2I9/x09VQ/IJEU35HQJ/ZXHcLwKGyMBlN6tDkJ3btjSycRTthzTFBOQ1UhK4DEUlmVYtkP7KkecBg8crYn4OkMCwh72lc0OMxQAjm0Kmh1BGs5otfcMLW+KqIIfHa8agWs6GDTOXCPeOhs/2TnxiD17PQ4lnOsfToQwC+v7u4nDlwqBmFJKsFIhHctH21CIPgUXvgPDwRUVqCiV0Nmfm38B4mfMdUdd4m5pNQNx2VjGVdymPsA88/lkD0xKDYsFO9eFKaaBxR7i+/bLc0FB9LRQFQYdr8gE5FOq60GgvsKzna4zfVQE0j8CGcf0nQ5QQA8+WXd/qgKlfLVt7R8diinl69ZvWHHE75Pw+tmphQxdC8f5gSO3csQ7UWtBuiK3X1W3NRZ5V2bEsEpccQv2Q4AdjVFVuQa3t5+s6IPGZE=
