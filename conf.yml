@@ -1,6 +1,6 @@
 general:
     company: Server Density
-    logo: logo.png
+    company-logo: logo.png
     header: This is how our infrastructure performs
     sub-header: Metrics from the last 24 hours.
     header-image: main-image.png
@@ -114,6 +114,7 @@ infrastructure:
               - sum
               - max
             sum_title: Alerts triggered
+            sum_unit: per day
             max_title: Peak
             style: circle-filled
     - title: Website monitoring
@@ -163,7 +164,7 @@ infrastructure:
             - sum
             - max
           sum_title: Traffic recieved internally # internal traffic
-          sum_unit: mb
+          sum_unit: mb per day
           max_title: Peak
           multiplier: 60
         - metrickey: networkTraffic.eth0.txMBitS
@@ -171,7 +172,7 @@ infrastructure:
             - sum
             - max
           sum_title: Traffic sent internally
-          sum_unit: mb
+          sum_unit: mb per day
           max_title: Peak
           multiplier: 60
         - metrickey: networkTraffic.eth1.rxMBitS
@@ -179,7 +180,7 @@ infrastructure:
             - sum
             - max
           sum_title: Traffic recieved externally
-          sum_unit: mb
+          sum_unit: mb per day
           max_title: Peak
           multiplier: 60
         - metrickey: networkTraffic.eth1.txMBitS
@@ -187,6 +188,6 @@ infrastructure:
             - sum
             - max
           sum_title: Traffic sent externally
-          sum_unit: mb
+          sum_unit: mb per day
           max_title: Peak
           multiplier: 60

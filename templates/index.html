@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Performance Dashboard - Server Density</title>
+    <title>Infrastructure Dashboard - {{ general.company }}</title>
     <meta name="description" content="Your own dashboard to show off how impressive and well you are managing your infrastructure.">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/normalize.css">
@@ -55,13 +55,13 @@
         <div class="{{metric.style|default('square-frame')}} center-horizontal-child">
             {% for calculation in metric.calculation %}
             {% if loop.index == 1 %}
-                <div class="metric-stat">
-                    <span class="number">{{ short_no(metric[calculation + '_stat']) }}</span>
-                    <span class="unit">{{ metric[calculation + '_unit'] }}</span>
+                <div class="frame-metric-stat">
+                    <span class="frame-number">{{ short_no(metric[calculation + '_stat']) }}</span>
+                    <span class="frame-unit">{{ metric[calculation + '_unit'] }}</span>
                 </div>
-                <span class="stat-title">{{ metric[calculation + '_title'] }}</span>
+                <span class="frame-stat-title">{{ metric[calculation + '_title'] }}</span>
             {% else %}
-                <span class="secondary-metric">
+                <span class="frame-secondary-metric">
                     {{ metric[calculation + '_title'] }}: {{ short_no(metric[calculation + '_stat']) }} {{ metric[calculation + '_unit'] }}
                 </span>
             {% endif %}

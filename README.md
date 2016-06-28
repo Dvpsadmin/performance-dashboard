@@ -56,6 +56,7 @@ Let's walk through the configuration options that you can make in `conf.yml`. Th
 | Name        | Required | Explanation |
 |-------------| -------- | ------------|
 | company     | yes      | Your company name |
+| company-logo| no       | A small image of your logo |
 | header      | yes      | Text below your company name |
 | sub-header  | yes      | Smaller text below the header |
 | header-image | no      | An image below the header area |
