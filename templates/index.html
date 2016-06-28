@@ -16,7 +16,7 @@
             pagestatus = doc.find('.page-status');
 
             moreInfo = $.parseHTML(
-                '<a href="https://{{ general.statuspage }}.statuspage.io/">More information at statuspage.io</a>'
+                '<a href="https://{{ general.statuspage }}.statuspage.io/">{{ general.statuspage }}.statuspage.io</a>'
             );
             $(pagestatus).find('.last-updated-stamp').append(moreInfo);
             $('.status-container').append(pagestatus);
@@ -49,10 +49,10 @@
     </div>
 {%- endmacro %}
 
-{# The style called circle-frame #}
-{% macro circle_frame(metric) -%}
+{# The style called frame #}
+{% macro frame(metric) -%}
     <div class="column">
-        <div class="circle-frame center-horizontal-child">
+        <div class="{{metric.style|default('square-frame')}} center-horizontal-child">
             {% for calculation in metric.calculation %}
             {% if loop.index == 1 %}
                 <div class="metric-stat">
@@ -70,10 +70,10 @@
     </div>
 {%- endmacro %}
 
-{# The style called circle-filled #}
-{% macro circle_filled(metric) -%}
+{# The style called filled #}
+{% macro filled(metric) -%}
     <div class="column">
-        <div class="circle-filled center-horizontal-child">
+        <div class="{{metric.style|default('square-frame')}} center-horizontal-child">
         {% for calculation in metric.calculation %}
         {% if loop.index == 1 %}
             <span class="filled-stat-title">{{ metric[calculation + '_title'] }}</span>
@@ -96,9 +96,14 @@
         <div class="row">
             <div class="column">
                 <div>
-                    <h1 class="company">{{ general.company }}</h1>
+                    <h1 class="company">
+                        {% if general['company-logo'] %}
+                            <img class="company-logo" src="images/{{ general['company-logo'] }}" alt="">
+                        {% endif %}
+                        {{ general.company }}
+                    </h1>
                     <h2 class="header">{{ general.header }}</h2>
-                    <span class="subheader">{{ general['sub-header'] }}</span>
+                    <h3 class="subheader">{{ general['sub-header'] }}</h3>
                 </div>
                 {% if general['header-image'] %}
                 <div class="header-image">
@@ -106,9 +111,7 @@
                 </div>
                 {% endif %}
                 {% if general.statuspage %}
-                <div class="status-container">
-
-                </div>
+                <div class="status-container"></div>
                 {% endif %}
             </div>
         </div>
@@ -122,20 +125,24 @@
                 {% endif %}
             </div>
             <div class="row flex-wrap">
-                {% if server.image and server.image_layout == 'right' %}
+                {% if server.image and server.image_layout == 'left' %}
                     {{ serverimage(server) }}
                 {% endif %}
                 {# If you add different styles you'll need to add an if statement to check
                 for that here. #}
                 {% for metric in server.metrics %}
                     {% if  metric.style|default('circle-frame') == 'circle-frame' %}
-                        {{ circle_frame(metric) }}
+                        {{ frame(metric) }}
+                    {% elif  metric.style == 'square-frame' %}
+                        {{ frame(metric) }}
                     {% elif metric.style == 'circle-filled' %}
-                        {{ circle_filled(metric) }}
+                        {{ filled(metric) }}
+                    {% elif metric.style == 'square-filled' %}
+                        {{ filled(metric) }}
                     {% endif %} <!-- more styles to display -->
                 {% endfor %}
 
-                {% if server.image and server.image_layout == 'left' %}
+                {% if server.image and server.image_layout == 'right' %}
                     {{ serverimage(server) }}
                 {% endif %}
             </div>

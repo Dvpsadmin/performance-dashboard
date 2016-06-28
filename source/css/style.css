@@ -1,9 +1,13 @@
+@import url(https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500);
+
 body {
-    color: #32383D;
+    color: #2a2b2c;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .main {
-    margin-top: 10rem;
+    margin-top: 5rem;
     max-width: 900px;
     text-align: center;
 }
@@ -11,41 +15,67 @@ body {
 /* Top header */
 
 .company {
-    font-size: 9rem;
+    font-size: 3.2rem;
+    font-weight: 400;
+    margin-bottom: 6rem;
+}
+
+.company-logo {
+    display: inline-block;
+    height: 1.4em;
+    width: auto;
+    vertical-align: -.25em;
+    margin-right: .2em;
 }
 
 .header {
     margin-bottom: 0;
+    font-weight: 500;
+    font-size: 4.5rem;
 }
 
 .subheader {
-    font-size: 2.5rem;
+    margin-top: .6em;
+    font-size: 3rem;
 }
 
 .header-image {
-    padding-top: 2rem;
+    padding-top: 8rem;
+}
+
+.header-image img {
+    max-height: 300px;
+    max-width: 900px;
+    width: auto;
+    height: auto;
+}
+
+.status-container {
+    margin-top: 7rem;
+    margin-bottom: 7rem;
 }
 
 /* Metrics section */
 
 .server-area {
-    margin-top: 5rem;
-}
-
-.server-title {
-    font-size: 4rem;
-    border-bottom: 1px #898C8E solid;
+    margin-top: 4rem;
 }
 
 .server-header {
     position: relative;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
+}
+
+.server-title {
+    font-size: 3rem;
+    border-bottom: 1px #dddedf solid;
+    padding-bottom: .3em;
 }
 
 .server-sub-title {
     font-size: 1.5rem;
     position: absolute;
-    top: 50px;
+    bottom: -3rem;
 }
 
 .text-left {
@@ -98,7 +128,6 @@ body {
     position: relative;
 }
 
-
 .secondary-metric {
     display: block;
 }
@@ -106,39 +135,60 @@ body {
 
 /* Circle filled module */
 
-.circle-filled {
-    border-radius: 50%;
-    background-color: #3741AD;
+.circle-filled,
+.square-filled {
+    background-color: #0066cc;
     color: #FFF;
     width: 150px;
     height: 150px;
 }
 
+.circle-filled {
+    border-radius: 50%;
+}
+
+.square-filled {
+    border-radius: 20%;
+}
+
 .filled-stat-title {
-    font-size: 1.4rem;
-}
-
-.filled-number {
-    font-size: 3.2rem;
-    line-height: 1;
-    padding-top: 0.2rem;
-}
-
-.filled-unit {
-    font-size: 1.4rem;
-}
-
-.filled-secondary-metric {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 400;
 }
 
+.filled-number {
+    display: inline-block;
+    font-size: 4rem;
+    line-height: .9em;
+    font-weight: 400;
+    margin-top: .1em;
+}
+
+.filled-unit {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: .3em;
+}
+
+.filled-secondary-metric {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
 /* Circle frame module */
-.circle-frame {
-    border-radius: 50%;
-    border: 2px solid #878B8E;
+.circle-frame,
+.square-frame {
+    border: 2px solid #bbddff;
     width: 150px;
     height: 150px;
+}
+
+.circle-frame {
+    border-radius: 50%;
+}
+
+.square-frame {
+    border-radius: 20%;
 }
 
 .metric-stat {
@@ -146,9 +196,12 @@ body {
 }
 
 .number {
-    line-height: 1;
+    display: inline-block;
     font-size: 4rem;
-    color: #61B58F;
+    line-height: .9em;
+    font-weight: 400;
+    margin-bottom: .1em;
+    color: #0066cc;
 }
 
 .unit {
@@ -156,19 +209,16 @@ body {
 }
 
 .stat-title {
-    color: #61B58F;
-    font-size: 1.9rem;
-    font-weight: 200;
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
+    color: #0066cc;
+    font-size: 1.8rem;
+    font-weight: 400;
+    margin-bottom: .1em;
 }
 
 .secondary-metric {
-    display: block;
-    font-weight: 400;
-    color: #535970;
-    font-size: 1.5rem;
-    line-height: 1.3;
+    color: #4a4b4c;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .circle-center {
@@ -190,7 +240,7 @@ body {
 /* Addition to grid layout */
 
 .row .column {
-    margin-top: 2rem;
+    margin: 2rem 0;
 }
 
 .column-100 {
@@ -210,32 +260,39 @@ body {
 
 /* Styling from statuspage.io */
 
-.page-status .status {
-    color: #fff;
-    position: relative;
-    top: 2px
-}
-
 .page-status {
-    font-weight: 500;
+    position: relative;
+    font-weight: 400;
     border-radius: 4px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -o-border-radius: 4px;
-    -ms-border-radius: 4px;
-    border: 1px solid rgba(0,0,0,0.1);
-    text-shadow: 0 1px 0 rgba(0,0,0,0.1);
-    margin-bottom: 70px;
-    margin-top: 30px;
-    padding: 1.15rem 1.25rem
+    color: #ffffff;
+    text-align: left;
 }
 
 .page-status .font-large {
+    font-size: 2rem;
+    display: inline-block;
+    padding: .2em 0;
+    margin-left: 2rem;
+}
+
+.page-status .last-updated-stamp {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    height: 1em;
+    line-height: 1em;
+    margin-top: -.5em;
+}
+
+.page-status .last-updated-stamp a {
+    color: #ffffff;
+    text-decoration: underline;
+    font-size: 1.3em;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 29px;
-    font-size: 1.25rem;
-    line-height: 1.8125rem
+}
+
+.page-status .last-updated-stamp a:hover {
+    text-decoration: none;
 }
 
 @media screen and (max-width: 650px) {
@@ -261,14 +318,6 @@ body {
     line-height: 21.35px;
     font-size: 0.875rem;
     line-height: 1.33438rem
-}
-
-.page-status .last-updated-stamp a {
-    font-weight: 400;
-    color: rgba(255,255,255,0.8);
-    float: right;
-    position: relative;
-    top: 7px;
 }
 
 /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */ /* BODY BACKGROUND */
@@ -323,7 +372,7 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .page-status.status-critical,
 .unresolved-incident.impact-critical .incident-title,
 .flat-button.background-red {
-    background-color: #d60000;
+    background-color: #b70000;
 }
 .layout-content.status-index .components-statuses .component-container.status-red:after,
 .layout-content.status-full-history .month .incident-container .impact-critical,
@@ -332,11 +381,11 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .status-red .icon-indicator,
 .components-container .component-inner-container.status-red .component-status,
 .components-container .component-inner-container.status-red .icon-indicator {
-    color: #d60000;
+    color: #b70000;
 }
 
 .unresolved-incident.impact-critical .updates {
-    border-color:#d60000;
+    border-color:#b70000;
 }
 
 /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */ /* CSS ORANGES */
@@ -344,7 +393,7 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .status-day .update-title.impact-major a:hover,
 .page-status.status-major,
 .unresolved-incident.impact-major .incident-title {
-    background-color: #ff8000;
+    background-color: #e84630;
 }
 .layout-content.status-index .components-statuses .component-container.status-orange:after,
 .layout-content.status-full-history .month .incident-container .impact-major,
@@ -353,11 +402,11 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .status-orange .icon-indicator,
 .components-container .component-inner-container.status-orange .component-status,
 .components-container .component-inner-container.status-orange .icon-indicator {
-    color: #ff8000;
+    color: #e84630;
 }
 
 .unresolved-incident.impact-major .updates {
-    border-color: #ff8000;
+    border-color: #e84630;
 }
 
 /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */ /* CSS YELLOWS */
@@ -366,7 +415,7 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .page-status.status-minor,
 .unresolved-incident.impact-minor .incident-title,
 .scheduled-incidents-container .tab {
-    background-color: #f1c40f;
+    background-color: #d9a238;
 }
 .layout-content.status-index .components-statuses .component-container.status-yellow:after,
 .layout-content.status-full-history .month .incident-container .impact-minor,
@@ -375,12 +424,12 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .status-yellow .icon-indicator,
 .components-container .component-inner-container.status-yellow .component-status,
 .components-container .component-inner-container.status-yellow .icon-indicator {
-    color: #f1c40f;
+    color: #d9a238;
 }
 
 .unresolved-incident.impact-minor .updates,
 .scheduled-incidents-container {
-    border-color:#f1c40f;
+    border-color:#d9a238;
 }
 
 /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */ /* CSS BLUES */
@@ -389,7 +438,7 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .page-status.status-maintenance,
 .unresolved-incident.impact-maintenance .incident-title,
 .scheduled-incidents-container .tab {
-    background-color: #3498DB;
+    background-color: #0066cc;
 }
 
 .layout-content.status-index .components-statuses .component-container.status-blue:after,
@@ -399,23 +448,23 @@ body.status .layout-content.status .border-color, hr, .tooltip-base, .markdown-d
 .status-blue .icon-indicator,
 .components-container .component-inner-container.status-blue .component-status,
 .components-container .component-inner-container.status-blue .icon-indicator {
-    color: #3498DB;
+    color: #0066cc;
 }
 
 .unresolved-incident.impact-maintenance .updates,
 .scheduled-incidents-container {
-    border-color:#3498DB;
+    border-color:#0066cc;
 }
 
 /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */ /* CSS GREENS */
 .page-status.status-none {
-    background-color: #80b500;
+    background-color: #9ac122;
 }
 .layout-content.status-index .components-statuses .component-container.status-green:after,
 .status-green .icon-indicator,
 .components-container .component-inner-container.status-green .component-status,
 .components-container .component-inner-container.status-green .icon-indicator {
-    color: #80b500;
+    color: #9ac122;
 }
 
 

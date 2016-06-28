@@ -10,8 +10,9 @@
 general:
     company: Acme Corporation
     header: Acme servers performs top notch
-    sub-header: If something goes wrong, dont blame use, blame the servers
+    sub-header: If something goes wrong, dont blame use, blame the servers.
     header-image: main-image.png
+    company-logo: logo.png
     statuspage: serverdensity # url, optional. The url of your statuspage.io. Fetches the status on load.
     load-balanced: False # optional, by default this is true
     stack:
@@ -22,8 +23,8 @@ general:
 infrastructure:
     - title: API Load Balancers
       subtitle: Serving thousands of requests a day
-      image_layout: right # optional, sets the image on either left or right of the metrics. Omit it for no image.
-      title_layout: right # optional, defaults to left. The title of the group
+      image_layout: left # optional, sets the image on either left or right of the metrics. Omit it for no image.
+      title_layout: left # optional, defaults to left. The title of the group
       image: kitten.jpg
       size: 100  # optional, defaults to 100. Set the percentage of how much the group should occupy on the page
       group: API Load Balancers # Either group or tag is required.
@@ -40,7 +41,7 @@ infrastructure:
             max_title: Peak
             max_unit: q/s
             max_stat: 1341
-            style: circle-filled # These are modules, you can look at the readme and see what modules are available to use.
+            style: square-filled # These are modules, you can look at the readme and see what modules are available to use.
           - metrickey: cpustats.nice
             calculation:
               - average
@@ -53,8 +54,8 @@ infrastructure:
             max_stat: 7
     - title: Some other stats
       subtitle: Serving thousands of requests a day
-      image_layout: right
-      title_layout: right
+      image_layout: left
+      title_layout: left
       image: kitten.jpg
       size: 50
       group: API Load Balancers
@@ -113,3 +114,4 @@ infrastructure:
             max_title: Peak
             max_unit: M
             max_stat: 7
+            style: circle-frame
