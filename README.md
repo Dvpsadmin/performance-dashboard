@@ -83,8 +83,9 @@ Inside the `infrastructure` heading there is a `metrics` heading. The `metrics` 
 
 | Name       | Required | Explanation |
 |----------  | -------- | ----------- |
-| metrickey  | yes      | After having done `make available`, you'll see all the possible keys, this is where you put it. | 
+| metrickey  | yes      | After having done `make available`, you'll see all the possible keys, this is where you put it. |
 | calculation | yes     | A yaml list of ways to make calculations for the metric. Possible values are `average`, `sum`, `max`, `median`, `min` |
+| cumulative | no       | If the data is distributed among several servers and you want each data point summed. Useful for metrics that can be counted, such as requests, megabyte, users. Not to be used for things like load or CPU usage. *Defaults to True*| 
 | *your_calc*_title | - | if you used average as a calculation method, it should be `average_title` |
 | *your_calc*_unit | -  | if you used average as a calculation method, it should be `average_unit` |
 | *your_calc*_stat | -  | if you used average as a calculation method, it should be `average_stat`, this is useful for dummy if you quickly want to see how things look when using `make generate_dev` |

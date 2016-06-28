@@ -106,12 +106,12 @@ class DataWrapper(object):
                 names.append(d.get('name'))
                 return self._data_node(d.get('tree'), names)
 
-    def _get_data_points(self, data_entries, multiplier):
+    def _get_data_points(self, cumulative, data_entries, multiplier):
         """Extract the singular points into a list and return a list of those points"""
         data_points = []
         for data in data_entries:
             points = [point['y'] * multiplier for point in data['data']]
-            if self.conf.get('load_balanced', True) and len(data_points) > 0:
+            if cumulative and len(data_points) > 0:
                 self._merge_loadbalanced_data(data_points, points)
             else:
                 data_points.extend(points)
@@ -154,13 +154,16 @@ class DataWrapper(object):
             logging.info('Gather data from {}...'.format(infra_conf['title']))
             devices = self._get_devices(infra_conf)
             for metric_conf in infra_conf['metrics']:
-                metric = metric_conf['metrickey']
-                multiplier = metric_conf.get('multiplier', 1)
-                data_entries = self._get_metrics(metric, devices)
-                for method in metric_conf['calculation']:
-                    data_points = self._get_data_points(data_entries, multiplier)
-                    result = getattr(self, 'calc_{}'.format(method))(data_points)
-                    metric_conf['{}_stat'.format(method)] = result
+                metric = metric_conf.get('metrickey')
+                cumulative = metric_conf.get('cumulative', True)
+                # giving the option to show case static information in boxes
+                if metric:
+                    multiplier = metric_conf.get('multiplier', 1)
+                    data_entries = self._get_metrics(metric, devices)
+                    for method in metric_conf['calculation']:
+                        data_points = self._get_data_points(cumulative, data_entries, multiplier)
+                        result = getattr(self, 'calc_{}'.format(method))(data_points)
+                        metric_conf['{}_stat'.format(method)] = result
         return self.conf
 
     def metric_filter(self, metrics, filter=None):
