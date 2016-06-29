@@ -1,8 +1,9 @@
 # Performance page
 
-A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com)
+A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com).
 
 ## A short demo
+![Demo](/docs/demo.gif "Demo")
 
 
 ## Future Features
@@ -115,13 +116,14 @@ See [Using a custom domain with GitHub Pages](https://help.github.com/articles/c
 
 ## Modules
 
+### Gallery
+![Filled square](/docs/filled-square.png "Filled Square")
+![Filled Circle](/docs/filled-circle.png "Filled Circle")
+![Frame Circle](/docs/frame-circle.png "Frame Circle")
+![Frame Square](/docs/frame-square.png "Frame Square")
+
 ### Explanation of they work
 
 Some code. 
-
-### Gallery
-
-Images of modules
-
 
 <a name="myfootnote1">1</a>: It assumes that every device in your group uses the same metrics, so it only checks the first device to speed things up. 
