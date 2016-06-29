@@ -1,26 +1,37 @@
 # Performance page
 
-A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com).
+A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com).
 
 ## A short demo
 ![Demo](/docs/demo.gif "Demo")
 
-
 ## Future Features
 Open an issue to let us know what kind of features you would like to see. If you are of the creative kind, take a look at the issues and implement a feature!  
 
-    - Save historic data so it can be displayed
+Things that could make sense in the future. 
+
+    - Save historic data so it can be displayed in a timeline. 
     - UI interface interface for configuration instead of yaml
 
 
 ## Installation
 The very first thing you should do is to FORK this project. Once you've forked it you can start customizing your settings. 
 
-To be able to get data from your server in the first place you need to monitor your server with Server Density. So go ahead and [sign up for an account](https://www.serverdensity.com) at server density. (Feel free to make PRs to make this work with other monitoring solutions)
+To be able to get data from your server in the first place you need to monitor your server with Server Density. So go ahead and [sign up for an account](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) at server density. (Feel free to make PRs to make this work with other monitoring solutions)
 
-The next step is to start configuring your `conf.yml` to be able to fetch data. Use `conf_dev.yml` as a starting point for your configurations. The first step would be to fill in all the groups or tags that you want to monitor. Then run `make available`. That will create a file `available.md` with all the metrics each group or tag has<sup>[1](#myfootnote1)</sup>. 
+The next step is to start configuring your `conf.yml` to be able to fetch data. Use `conf_dev.yml` as a starting point for your configurations or our own configuration in `conf.yml`. The first step would be to create barebone configuration that contains the groups and tags that you want to fetch data from. Then run `make available`. 
 
-This is what it will look like. From here you can see what metrics you find interesting and then go on and copy the metrickey to each metrics in `conf.yml` 
+```
+infrastructure:
+    - title: A funky title
+      group: my-group
+    - title: My awesome server
+      tag: my-tag
+```
+
+That will create a file `available.md` with all the metrics each group or tag has<sup>[1](#myfootnote1)</sup>. 
+
+That file will look like something like this. From here you can see what metrics you find interesting and then go on and copy the metrickey to each metrics in `conf.yml` 
 ```
     # Available metrics for all your groups
 
@@ -34,12 +45,12 @@ This is what it will look like. From here you can see what metrics you find inte
     <snip>
 ```
 
-Once you're happy with the configuration you can run `make generate` to generate the performance page. This will create an output folder where `index.html` exists which is your performance page. Go on, take a look at what your brand new performance page looks like! 
+Once you're happy with the configuration you can run `make generate` to generate the performance page. This will create an output folder where `index.html` exists which is your generated page with stats. Go on, take a look at what your brand new performance page looks like! 
 
-To get the layout all fancy and look good, a faster option is to not work with data that you fetch each time. Just run `make generate_dev` to generate the template without live data.
+To quickly iterate on how you would want the page to look like use the command `make watch`. Every time a change is being made in the `source` folder it will output the changes in the `output` folder. This won't use data pulled from any metrics so if you want to see it with data you'll have to add that data in the `conf_dev.yml` file. You should look for words that ends with `_stat`.  
 
 ## Update the data every 24 hours 
-When you made sure that your page successfully builds. The next step is to make configurations for Travis.
+When you made sure that your page successfully builds, which you can do with the command `make generate`. The next step is to make configurations for Travis.
 
 You'll need to add secure github token to `.travis.yml`. The way to do that is described in [detail here](http://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/). But in short you'll need to do the following. First delete the secure statement that isn't yours. Then get a [github token](https://github.com/settings/tokens) and use it below.
 
@@ -89,7 +100,7 @@ Inside the `infrastructure` heading there is a `metrics` heading. The `metrics` 
 | *your_calc*_title | - | if you used average as a calculation method, it should be `average_title` |
 | *your_calc*_unit | -  | if you used average as a calculation method, it should be `average_unit` |
 | *your_calc*_stat | -  | if you used average as a calculation method, it should be `average_stat`, this is useful for dummy if you quickly want to see how things look when using `make generate_dev` |
-| style      | no       | uses the different modules defined in `index.html`. The default style is `circle_frame`
+| style      | no       | uses the different modules defined in `index.html`. The default style is `circle-frame`, and other styles are `circle-filled`, `square-frame` or `square-filled`. 
 
 ### Template
 If you want to make any changes to the page itself you can make the changes in the `index.html` file located in the templates folder 
@@ -116,6 +127,8 @@ See [Using a custom domain with GitHub Pages](https://help.github.com/articles/c
 
 ## Modules
 
+Below you can see what kind of modules currently exists to visualize the data. 
+
 ### Gallery
 ![Filled square](/docs/filled-square.png "Filled Square")
 ![Filled Circle](/docs/filled-circle.png "Filled Circle")
@@ -124,6 +137,29 @@ See [Using a custom domain with GitHub Pages](https://help.github.com/articles/c
 
 ### Explanation of they work
 
-Some code. 
+The code for the different modules currently lives in `templates/index.html`. It loops through all the calculation options you've defined in the `conf.yml` file. Such as `sum` or `max`. And displays it accordingly. Feel free to contribute more modules! 
+
+```
+{# The style called frame #}
+{% macro frame(metric) -%}
+    <div class="column">
+        <div class="{{metric.style|default('square-frame')}} center-horizontal-child">
+            {% for calculation in metric.calculation %}
+            {% if loop.index == 1 %}
+                <div class="frame-metric-stat">
+                    <span class="frame-number">{{ short_no(metric[calculation + '_stat']) }}</span>
+                    <span class="frame-unit">{{ metric[calculation + '_unit'] }}</span>
+                </div>
+                <span class="frame-stat-title">{{ metric[calculation + '_title'] }}</span>
+            {% else %}
+                <span class="frame-secondary-metric">
+                    {{ metric[calculation + '_title'] }}: {{ short_no(metric[calculation + '_stat']) }} {{ metric[calculation + '_unit'] }}
+                </span>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{%- endmacro %}
+```
 
 <a name="myfootnote1">1</a>: It assumes that every device in your group uses the same metrics, so it only checks the first device to speed things up. 

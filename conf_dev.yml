@@ -47,7 +47,7 @@ infrastructure:
               - average
               - max
             average_title: Nice usage
-            average_unit: "%"
+            average_unit: percent
             average_stat: 10
             max_title: Peak
             max_unit: M
@@ -78,7 +78,7 @@ infrastructure:
               - average
               - max
             average_title: Nice usage
-            average_unit: "%"
+            average_unit: percent
             average_stat: 10
             max_title: Peak
             max_unit: M
@@ -109,7 +109,7 @@ infrastructure:
               - average
               - max
             average_title: Nice usage
-            average_unit: "%"
+            average_unit: percent
             average_stat: 10
             max_title: Peak
             max_unit: M

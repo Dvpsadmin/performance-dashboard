@@ -9,9 +9,13 @@ general:
     stack:
         - Php
         - Python
-        - Storm
         - MongoDB
-        - Kafka Storm
+        - Apache Storm
+        - Kafka
+        - Zookeeper
+        - Redis
+        - Nginx
+        - Ubuntu Linux
     round: 0 # optional
 infrastructure:
     - title: Api Requests
