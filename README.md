@@ -17,7 +17,7 @@ Things that could make sense in the future.
 ## Installation
 The very first thing you should do is to FORK this project. Once you've forked it you can start customizing your settings. 
 
-To be able to get data from your server in the first place you need to monitor your server with Server Density. So go ahead and [sign up for an account](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) at server density. (Feel free to make PRs to make this work with other monitoring solutions)
+To be able to get data from your server in the first place you need to monitor your server with Server Density. So go ahead and [sign up for an account](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) at Server Density. (Feel free to make PRs to make this work with other monitoring solutions).
 
 The next step is to start configuring your `conf.yml` to be able to fetch data. Use `conf_dev.yml` as a starting point for your configurations or our own configuration in `conf.yml`. The first step would be to create barebone configuration that contains the groups and tags that you want to fetch data from. Then run `make available`. 
 
@@ -31,7 +31,7 @@ infrastructure:
 
 That will create a file `available.md` with all the metrics each group or tag has<sup>[1](#myfootnote1)</sup>. 
 
-That file will look like something like this. From here you can see what metrics you find interesting and then go on and copy the metrickey to each metrics in `conf.yml` 
+That file will look something like this. From here you can see what metrics you find interesting and then go on and copy the `metrickey` to each metrics in `conf.yml` 
 ```
     # Available metrics for all your groups
 
@@ -50,14 +50,14 @@ Once you're happy with the configuration you can run `make generate` to generate
 To quickly iterate on how you would want the dashboard to look like use the command `make watch`. Every time a change is being made in the `source` folder it will output the changes in the `output` folder. This won't use data pulled from any metrics so if you want to see it with data you'll have to add that data in the `conf_dev.yml` file. You should look for words that ends with `_stat`.  
 
 ## Update the data every 24 hours 
-When you made sure that your dashboard successfully builds, which you can do with the command `make generate`. The next step is to make configurations for Travis.
+When've made sure your dashboard builds successfully, which you can do with the command `make generate`. The next step is to make configurations for Travis CI.
 
 You'll need to add secure github token to `.travis.yml`. The way to do that is described in [detail here](http://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/). But in short you'll need to do the following. First delete the secure statement that isn't yours. Then get a [github token](https://github.com/settings/tokens) and use it below.
 
     sudo gem install travis
     travis encrypt GH_TOKEN=your_token --add
 
-Then in the settings for travis go on and add the following environment variables: `SD_AUTH_TOKEN` with a token from the app and `GH_REPO_SLUG` which is the path to your repo (ie in our case it would be `serverdensity/performance-dashboard`)
+Then in the settings for Travis CI go on and add the following environment variables: `SD_AUTH_TOKEN` with a token from the app and `GH_REPO_SLUG` which is the path to your repo (ie in our case it would be `serverdensity/performance-dashboard`)
 
 After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance dashboard every 24 hours. 
 
@@ -103,7 +103,7 @@ Inside the `infrastructure` heading there is a `metrics` heading. The `metrics` 
 | style      | no       | uses the different modules defined in `index.html`. The default style is `circle-frame`, and other styles are `circle-filled`, `square-frame` or `square-filled`. 
 
 ### Template
-If you want to make any changes to the dashboard itself you can make the changes in the `index.html` file located in the templates folder 
+If you want to make any changes to the dashboard itself you can make the changes in the `index.html` file located in the templates folder.
 
 ### Config file
 Here is an example of a [configuration file](https://github.com/serverdensity/performance-dashboard/blob/master/conf_dev.yml) and this is the [configuration file](https://github.com/serverdensity/performance-dashboard/blob/master/conf.yml) we used to make our dashboard. 
