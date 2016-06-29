@@ -1,6 +1,6 @@
-# Performance page
+# Performance dashboard
 
-A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com).
+A performance dashboard generator that lets you host a dashboard which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com/?utm_campaign=perf-dashboard&utm_source=github&medium=repo) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our dashboard looks like [here](https://stats.serverdensity.com).
 
 ## A short demo
 ![Demo](/docs/demo.gif "Demo")
@@ -45,21 +45,21 @@ That file will look like something like this. From here you can see what metrics
     <snip>
 ```
 
-Once you're happy with the configuration you can run `make generate` to generate the performance page. This will create an output folder where `index.html` exists which is your generated page with stats. Go on, take a look at what your brand new performance page looks like! 
+Once you're happy with the configuration you can run `make generate` to generate the performance dashboard. This will create an output folder where `index.html` exists which is your generated dashboard with stats. Go on, take a look at what your brand new performance dashboard looks like! 
 
-To quickly iterate on how you would want the page to look like use the command `make watch`. Every time a change is being made in the `source` folder it will output the changes in the `output` folder. This won't use data pulled from any metrics so if you want to see it with data you'll have to add that data in the `conf_dev.yml` file. You should look for words that ends with `_stat`.  
+To quickly iterate on how you would want the dashboard to look like use the command `make watch`. Every time a change is being made in the `source` folder it will output the changes in the `output` folder. This won't use data pulled from any metrics so if you want to see it with data you'll have to add that data in the `conf_dev.yml` file. You should look for words that ends with `_stat`.  
 
 ## Update the data every 24 hours 
-When you made sure that your page successfully builds, which you can do with the command `make generate`. The next step is to make configurations for Travis.
+When you made sure that your dashboard successfully builds, which you can do with the command `make generate`. The next step is to make configurations for Travis.
 
 You'll need to add secure github token to `.travis.yml`. The way to do that is described in [detail here](http://benlimmer.com/2013/12/26/automatically-publish-javadoc-to-gh-pages-with-travis-ci/). But in short you'll need to do the following. First delete the secure statement that isn't yours. Then get a [github token](https://github.com/settings/tokens) and use it below.
 
     sudo gem install travis
     travis encrypt GH_TOKEN=your_token --add
 
-Then in the settings for travis go on and add the following environment variables: `SD_AUTH_TOKEN` with a token from the app and `GH_REPO_SLUG` which is the path to your repo (ie in our case it would be `serverdensity/performance-page`)
+Then in the settings for travis go on and add the following environment variables: `SD_AUTH_TOKEN` with a token from the app and `GH_REPO_SLUG` which is the path to your repo (ie in our case it would be `serverdensity/performance-dashboard`)
 
-After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance page every 24 hours. 
+After that you start using the free service [Nightli.es](https://nightli.es) to continually build your performance dashboard every 24 hours. 
 
 ## Configuration
 Let's walk through the configuration options that you can make in `conf.yml`. There are two base levels for the yaml file. `general` and `infrastructure`. For the general settings you have the following. 
@@ -103,16 +103,16 @@ Inside the `infrastructure` heading there is a `metrics` heading. The `metrics` 
 | style      | no       | uses the different modules defined in `index.html`. The default style is `circle-frame`, and other styles are `circle-filled`, `square-frame` or `square-filled`. 
 
 ### Template
-If you want to make any changes to the page itself you can make the changes in the `index.html` file located in the templates folder 
+If you want to make any changes to the dashboard itself you can make the changes in the `index.html` file located in the templates folder 
 
 ### Config file
-Here is an example of a [configuration file](https://github.com/serverdensity/performance-page/blob/master/conf_dev.yml) and this is the [configuration file](https://github.com/serverdensity/performance-page/blob/master/conf.yml) we used to make our page. 
+Here is an example of a [configuration file](https://github.com/serverdensity/performance-dashboard/blob/master/conf_dev.yml) and this is the [configuration file](https://github.com/serverdensity/performance-dashboard/blob/master/conf.yml) we used to make our dashboard. 
 
 ### Use a subdomain
 
-If you want to use your own domain to host your performance page, you'll need to create a CNAME file and set up a CNAME record pointing to that page with your DNS provider. There already is a CNAME file in the source folder. Change this to your own domain. 
+If you want to use your own domain to host your performance dashboard, you'll need to create a CNAME file and set up a CNAME record pointing to that page with your DNS provider. There already is a CNAME file in the source folder. Change this to your own domain. 
 
-If you have e.g. the domain `mydomain.com`, your GitHub repo is `my-repo` and you want your status page to be reachable at `performance.mydomain.com`
+If you have e.g. the domain `mydomain.com`, your GitHub repo is `my-repo` and you want your performance dashboard to be reachable at `performance.mydomain.com`
 
 - Change the `CNAME` file in the source folder to 
 
