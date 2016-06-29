@@ -241,11 +241,26 @@ a {
 
 .tech-stack {
     margin-top: 20px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.tech-stack p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.tech-stack .stack-item {
+    border-radius: 12px;
+    background-color: #0066cc;
+    color: #FFF;
+    padding: 0.6rem;
+    line-height: 2.5;
 }
 
 /* footer */
 .footer {
-    margin-top: 9rem;
+    margin-top: 6rem;
     margin-bottom: 3rem;
     height: 4rem;
 }

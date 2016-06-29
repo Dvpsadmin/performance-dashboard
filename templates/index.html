@@ -151,9 +151,9 @@
         </div>
         <div class="tech-stack">
             {% if general.stack %}
-                Our stack
+                <p>Our stack</p>
                 {% for stack in general.stack %}
-                    <span style="padding-left: 5px;">{{ stack }}</span>
+                    <span class="stack-item">{{ stack }}</span>
                 {% endfor %}
             {% endif %}
         </div>
