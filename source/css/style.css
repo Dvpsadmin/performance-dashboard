@@ -256,6 +256,7 @@ a {
     color: #FFF;
     padding: 0.6rem;
     line-height: 2.5;
+    white-space: nowrap;
 }
 
 /* footer */
