@@ -1,6 +1,6 @@
 general:
     company: Server Density
-    company-logo: logo.png
+    company-logo: sdlogo.png
     header: This is how our infrastructure performs
     sub-header: Metrics from the last 24 hours.
     header-image: main-image.png
