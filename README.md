@@ -1,10 +1,9 @@
 # Performance page
 
-A performance page generator that lets you host a page which show others how your servers perform for free on Github. It uses [Server Density](https://www.serverdensity.com) to pull metrics from your servers. 
+A performance page generator that lets you host a page which show others how your servers perform. Since it uses Github pages hosting is all for free. It uses [Server Density](https://www.serverdensity.com) to pull metrics from your servers, however PRs are welcome to integrate with other metrics solutions. You can see what our page looks like [here](https://stats.serverdensity.com)
 
+## A short demo
 
-## Demo
-Gif of scrolling. 
 
 ## Future Features
 Open an issue to let us know what kind of features you would like to see. If you are of the creative kind, take a look at the issues and implement a feature!  
@@ -110,7 +109,7 @@ If you have e.g. the domain `mydomain.com`, your GitHub repo is `my-repo` and yo
 - Go to your DNS provider and create a new CNAME record pointing to your
 
           Name          Type      Value 
-          performance   CNAME     myusername.github.io/my-repo
+          performance   CNAME     myusername.github.io.
 
 See [Using a custom domain with GitHub Pages](https://help.github.com/articles/custom-domain-redirects-for-github-pages-sites/) for more info.
 

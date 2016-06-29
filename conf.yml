@@ -10,8 +10,8 @@ general:
         - Php
         - Python
         - Storm
-        - MongoDb
-        - HaProxy
+        - MongoDB
+        - Kafka Storm
     round: 0 # optional
 infrastructure:
     - title: Api Requests
