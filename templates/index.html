@@ -24,15 +24,25 @@
     </script>
     {% endif %}
 
-{% macro short_no(number) -%}
-    {% if number > 1000000000 %}
-        {{ (number/1000000000)|round_with_letter("B") }}
-    {% elif number > 1000000 %}
-        {{ (number/1000000)|round_with_letter("M") }}
-    {% elif number > 1000 %}
-        {{ (number/1000)|round_with_letter("K") }}
+{% macro short_no(number, si_unit) -%}
+    {% if si_unit == 'mb' %}
+        {% if number > 1000000000 %}
+            {{ (number/1000000000)|round_with_letter("PB") }}
+        {% elif number > 1000000 %}
+            {{ (number/1000000)|round_with_letter("TB") }}
+        {% elif number > 1000 %}
+            {{ (number/1000)|round_with_letter("GB") }}
+        {% endif %}
     {% else %}
-        {{ number }}
+        {% if number > 1000000000 %}
+            {{ (number/1000000000)|round_with_letter("B") }}
+        {% elif number > 1000000 %}
+            {{ (number/1000000)|round_with_letter("M") }}
+        {% elif number > 1000 %}
+            {{ (number/1000)|round_with_letter("K") }}
+        {% else %}
+            {{ number }}
+        {% endif %}
     {% endif %}
 {%- endmacro %}
 
@@ -56,13 +66,13 @@
             {% for calculation in metric.calculation %}
             {% if loop.index == 1 %}
                 <div class="frame-metric-stat">
-                    <span class="frame-number">{{ short_no(metric[calculation + '_stat']) }}</span>
+                    <span class="frame-number">{{ short_no(metric[calculation + '_stat'], metric.si_unit) }}</span>
                     <span class="frame-unit">{{ metric[calculation + '_unit'] }}</span>
                 </div>
                 <span class="frame-stat-title">{{ metric[calculation + '_title'] }}</span>
             {% else %}
                 <span class="frame-secondary-metric">
-                    {{ metric[calculation + '_title'] }}: {{ short_no(metric[calculation + '_stat']) }} {{ metric[calculation + '_unit'] }}
+                    {{ metric[calculation + '_title'] }}: {{ short_no(metric[calculation + '_stat'], metric.si_unit) }} {{ metric[calculation + '_unit'] }}
                 </span>
             {% endif %}
             {% endfor %}
@@ -77,11 +87,11 @@
         {% for calculation in metric.calculation %}
         {% if loop.index == 1 %}
             <span class="filled-stat-title">{{ metric[calculation + '_title'] }}</span>
-            <span class="filled-number">{{ short_no(metric[calculation + '_stat']) }}</span>
+            <span class="filled-number">{{ short_no(metric[calculation + '_stat'], metric.si_unit) }}</span>
             <span class="filled-unit">{{ metric[calculation + '_unit'] }}</span>
         {% else %}
             <span class="filled-secondary-metric">
-                {{ metric[calculation + '_title']}}: {{ short_no(metric[calculation + '_stat']) }} {{ metric[calculation + '_unit'] }}
+                {{ metric[calculation + '_title']}}: {{ short_no(metric[calculation + '_stat'], metric.si_unit) }} {{ metric[calculation + '_unit'] }}
             </span>
         {% endif %}
         {% endfor %}

@@ -45,10 +45,10 @@ infrastructure:
             max_title: Peak
             max_unit: q/s
           - metrickey: memory.memPhysUsed
+            si_unit: mb
             calculation:
               - average
             average_title: Used memory
-            average_unit: megabyte
           - metrickey: cpuStats.ALL.usr
             cumulative: False
             calculation:
@@ -137,10 +137,10 @@ infrastructure:
           average_title: Load Average
           max_title: Peak
         - metrickey: memory.memPhysUsed
+          si_unit: mb
           calculation:
             - average
           average_title: Memory used
-          average_unit: megabyte
     # - title: Notifications
     #   subtitle: Notifications is handled by storm, it does a splendid job.
     #   title_layout: right # optional,
@@ -171,10 +171,10 @@ infrastructure:
             max_title: Peak
             style: circle-filled
           - metrickey: memory.memPhysUsed
+            si_unit: mb
             calculation:
               - average
             average_title: Memory used
-            average_unit: megabyte
           - metrickey: cpuStats.ALL.usr
             cumulative: False
             calculation:
@@ -205,10 +205,10 @@ infrastructure:
           max_unit: / min
           style: circle-filled
         - metrickey: memory.memPhysUsed
+          si_unit: mb
           calculation:
             - average
           average_title: Memory used
-          average_unit: megabyte
         - metrickey: cpuStats.ALL.usr
           cumulative: False
           calculation:
@@ -255,38 +255,42 @@ infrastructure:
           average_title: Servers
           average_stat: 14
         - metrickey: networkTraffic.eth0.rxMBitS
+          si_unit: mb
           calculation:
             - sum
             - max
           sum_title: Traffic recieved internally # internal traffic
-          sum_unit: mb per day
+          sum_unit: per day
           max_title: Peak
-          max_unit: mb / min
+          max_unit: / min
           multiplier: 60
         - metrickey: networkTraffic.eth0.txMBitS
           calculation:
             - sum
             - max
           sum_title: Traffic sent internally
-          sum_unit: mb per day
+          si_unit: mb
+          sum_unit: per day
           max_title: Peak
-          max_unit: mb / min
+          max_unit: / min
           multiplier: 60
         - metrickey: networkTraffic.eth1.rxMBitS
+          si_unit: mb
           calculation:
             - sum
             - max
           sum_title: Traffic recieved externally
-          sum_unit: mb per day
+          sum_unit: per day
           max_title: Peak
-          max_unit: mb / min
+          max_unit: / min
           multiplier: 60
         - metrickey: networkTraffic.eth1.txMBitS
+          si_unit: mb
           calculation:
             - sum
             - max
           sum_title: Traffic sent externally
-          sum_unit: mb per day
+          sum_unit: per day
           max_title: Peak
-          max_unit: mb / min
+          max_unit: / min
           multiplier: 60
