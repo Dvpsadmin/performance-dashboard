@@ -32,6 +32,8 @@
             {{ (number/1000000)|round_with_letter("TB") }}
         {% elif number > 1000 %}
             {{ (number/1000)|round_with_letter("GB") }}
+        {% else %}
+            {{ number|round_with_letter("MB") }}
         {% endif %}
     {% else %}
         {% if number > 1000000000 %}

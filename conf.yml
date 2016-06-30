@@ -254,7 +254,7 @@ infrastructure:
           - average
           average_title: Servers
           average_stat: 14
-        - metrickey: networkTraffic.eth0.rxMBitS
+        - metrickey: networkTraffic.eth0.rxMByteS
           si_unit: mb
           calculation:
             - sum
@@ -264,7 +264,7 @@ infrastructure:
           max_title: Peak
           max_unit: / min
           multiplier: 60
-        - metrickey: networkTraffic.eth0.txMBitS
+        - metrickey: networkTraffic.eth0.txMByteS
           calculation:
             - sum
             - max
@@ -274,7 +274,7 @@ infrastructure:
           max_title: Peak
           max_unit: / min
           multiplier: 60
-        - metrickey: networkTraffic.eth1.rxMBitS
+        - metrickey: networkTraffic.eth1.rxMByteS
           si_unit: mb
           calculation:
             - sum
@@ -284,7 +284,7 @@ infrastructure:
           max_title: Peak
           max_unit: / min
           multiplier: 60
-        - metrickey: networkTraffic.eth1.txMBitS
+        - metrickey: networkTraffic.eth1.txMByteS
           si_unit: mb
           calculation:
             - sum
