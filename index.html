@@ -1,0 +1,927 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Infrastructure Dashboard - Server Density</title>
+    <meta name="description" content="Your own dashboard to show off how impressive and well you are managing your infrastructure.">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/milligram.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+        $.get( "https://serverdensity.statuspage.io/", function( data ) {
+            doc = $($.parseHTML(data))
+            pagestatus = doc.find('.page-status');
+
+            moreInfo = $.parseHTML(
+                '<a href="https://serverdensity.statuspage.io/">serverdensity.statuspage.io</a>'
+            );
+            $(pagestatus).find('.last-updated-stamp').append(moreInfo);
+            $('.status-container').append(pagestatus);
+        });
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div class="container main">
+        <div class="row">
+            <div class="column">
+                <div>
+                    <h1 class="company">
+                        
+                            <img class="company-logo" src="images/sdlogo.png" alt="">
+                        
+                        Server Density
+                    </h1>
+                    <h2 class="header">This is how our infrastructure performs</h2>
+                    <h3 class="subheader">Metrics from the last 24 hours.</h3>
+                </div>
+                
+                <div class="header-image">
+                    <img src="images/main-image.png" alt="">
+                </div>
+                
+                
+                <div class="status-container"></div>
+                
+            </div>
+        </div>
+        <div class="row flex-wrap">
+        
+        <div class="column column-100 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-left">Api Requests</h1>
+                
+                <span class="server-sub-title text-left">Serving thousands of requests a day</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="circle-filled center-horizontal-child">
+        
+        
+            <span class="filled-stat-title">Requests via Api</span>
+            <span class="filled-number">
+        
+            366 K
+        
+    </span>
+            <span class="filled-unit">per day</span>
+        
+        
+        
+            <span class="filled-secondary-metric">
+                Peak: 
+        
+            734
+        
+     q/s
+            </span>
+        
+        
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            1 M
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Requests via UI</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            5 K
+        
+     q/s
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            6 GB
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Used memory</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            19
+        
+    </span>
+                    <span class="frame-unit">percent</span>
+                </div>
+                <span class="frame-stat-title">CPU usage</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            97
+        
+     %
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            1
+        
+    </span>
+                    <span class="frame-unit">avg / min</span>
+                </div>
+                <span class="frame-stat-title">Load Average</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            4
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="column column-50 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-left">Inventory usage</h1>
+                
+                <span class="server-sub-title text-left">How people use our api to look at the inventory</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            274 K
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Devices updated</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    avg: 
+        
+            215
+        
+     / min
+                </span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            272
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            3 K
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Devices viewed</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    avg: 
+        
+            2
+        
+     / min
+                </span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            24
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            15 K
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Services updated</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    avg: 
+        
+            11
+        
+     / min
+                </span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            39
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            3 K
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Services viewed</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    avg: 
+        
+            1
+        
+     / min
+                </span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            6
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="column column-50 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-right">Inventory Servers</h1>
+                
+                <span class="server-sub-title text-right">The servers that handle our inventory</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            2
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Servers</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            35
+        
+    </span>
+                    <span class="frame-unit">percent</span>
+                </div>
+                <span class="frame-stat-title">CPU usage</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            55
+        
+     %
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            3
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Load Average</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            7
+        
+     
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            4 GB
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Memory used</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="column column-100 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-left">Alerts</h1>
+                
+                <span class="server-sub-title text-left">The amount of alerts we see every day</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="circle-filled center-horizontal-child">
+        
+        
+            <span class="filled-stat-title">Alerts triggered</span>
+            <span class="filled-number">
+        
+            3 M
+        
+    </span>
+            <span class="filled-unit">per day</span>
+        
+        
+        
+            <span class="filled-secondary-metric">
+                Peak: 
+        
+            4 K
+        
+     
+            </span>
+        
+        
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            19 GB
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Memory used</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            14
+        
+    </span>
+                    <span class="frame-unit">percent</span>
+                </div>
+                <span class="frame-stat-title">CPU usage</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            81
+        
+     %
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            1
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Load Average</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="column column-100 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-right">Website monitoring</h1>
+                
+                <span class="server-sub-title text-right">We do a lot of service checks in 24h</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="circle-filled center-horizontal-child">
+        
+        
+            <span class="filled-stat-title">Checks sent</span>
+            <span class="filled-number">
+        
+            2 M
+        
+    </span>
+            <span class="filled-unit">per day</span>
+        
+        
+        
+            <span class="filled-secondary-metric">
+                Peak: 
+        
+            4 K
+        
+     / min
+            </span>
+        
+        
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            14 GB
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Memory used</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            27
+        
+    </span>
+                    <span class="frame-unit">percent</span>
+                </div>
+                <span class="frame-stat-title">CPU usage</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            89
+        
+     %
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            2
+        
+    </span>
+                    <span class="frame-unit">avg / min</span>
+                </div>
+                <span class="frame-stat-title">Load Average</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        <div class="column column-100 server-area">
+            <div class="server-header">
+                <h1 class="server-title text-left">Load Balancing</h1>
+                
+                <span class="server-sub-title text-left">The total amount of traffic we handle through load balancers</span>
+                
+            </div>
+            <div class="row flex-wrap">
+                
+                
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            14
+        
+    </span>
+                    <span class="frame-unit"></span>
+                </div>
+                <span class="frame-stat-title">Servers</span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            2 TB
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Traffic recieved internally</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            2 GB
+        
+     / min
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            2 TB
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Traffic sent internally</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            2 GB
+        
+     / min
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            1 TB
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Traffic recieved externally</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            1 GB
+        
+     / min
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+                    
+                        <div class="column">
+        <div class="square-frame center-horizontal-child">
+            
+            
+                <div class="frame-metric-stat">
+                    <span class="frame-number">
+        
+            95 GB
+        
+    </span>
+                    <span class="frame-unit">per day</span>
+                </div>
+                <span class="frame-stat-title">Traffic sent externally</span>
+            
+            
+            
+                <span class="frame-secondary-metric">
+                    Peak: 
+        
+            100 MB
+        
+     / min
+                </span>
+            
+            
+        </div>
+    </div>
+                     <!-- more styles to display -->
+                
+
+                
+            </div>
+        </div>
+        
+        </div>
+        <div class="tech-stack">
+            
+                <p>Our stack</p>
+                
+                    <span class="stack-item">Php</span>
+                
+                    <span class="stack-item">Python</span>
+                
+                    <span class="stack-item">MongoDB</span>
+                
+                    <span class="stack-item">Apache Storm</span>
+                
+                    <span class="stack-item">Kafka</span>
+                
+                    <span class="stack-item">Zookeeper</span>
+                
+                    <span class="stack-item">Redis</span>
+                
+                    <span class="stack-item">Nginx</span>
+                
+                    <span class="stack-item">Ubuntu Linux</span>
+                
+            
+        </div>
+        <footer>
+            <div class="column footer">
+                <span>Powered by <a href="https://www.serverdensity.com">Server Density</a></span>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
